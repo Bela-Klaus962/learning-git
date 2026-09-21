@@ -59,16 +59,86 @@
 
     <!-- 1. REPOSITORY -------------------------------------------------- -->
     <section class="concept" id="repo" data-anim="repo">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">01</p>
+      <div class="concept__head">
+        <p class="concept__num">01</p>
           <h2 class="concept__title">Repository <span class="concept__alias">(repo)</span></h2>
           <p class="concept__what">
             <strong>What it is.</strong> A project folder whose entire history is
             tracked by Git. When it lives on a service like GitHub, GitLab, or
             Bitbucket, other people can see it, clone it, and contribute.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="repo" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--repo" viewBox="0 0 1200 480" role="img" aria-labelledby="repoTitle">
+            <title id="repoTitle">A project folder filling up with files while a commit log records each change</title>
+
+            <g class="repo-folder">
+              <rect class="repo-tab" x="50" y="70" width="220" height="60" rx="14" />
+              <rect class="repo-body" x="50" y="106" width="550" height="330" rx="18" />
+              <text class="repo-name" x="78" y="95">my-project/</text>
+            </g>
+
+            <g class="repo-files">
+              <g transform="translate(76 156)"><g class="repo-file">
+                <rect width="108" height="158" rx="8" />
+                <line x1="16" y1="30" x2="92" y2="30" /><line x1="16" y1="54" x2="92" y2="54" />
+                <line x1="16" y1="78" x2="66" y2="78" /><line x1="16" y1="102" x2="92" y2="102" />
+                <text x="54" y="141" text-anchor="middle">README.md</text>
+              </g></g>
+              <g transform="translate(206 156)"><g class="repo-file">
+                <rect width="108" height="158" rx="8" />
+                <line x1="16" y1="30" x2="92" y2="30" /><line x1="16" y1="54" x2="72" y2="54" />
+                <line x1="16" y1="78" x2="92" y2="78" /><line x1="16" y1="102" x2="80" y2="102" />
+                <text x="54" y="141" text-anchor="middle">index.html</text>
+              </g></g>
+              <g transform="translate(336 156)"><g class="repo-file">
+                <rect width="108" height="158" rx="8" />
+                <line x1="16" y1="30" x2="92" y2="30" /><line x1="16" y1="54" x2="92" y2="54" />
+                <line x1="16" y1="78" x2="60" y2="78" /><line x1="16" y1="102" x2="92" y2="102" />
+                <text x="54" y="141" text-anchor="middle">styles.css</text>
+              </g></g>
+              <g transform="translate(466 156)"><g class="repo-file">
+                <rect width="108" height="158" rx="8" />
+                <line x1="16" y1="30" x2="76" y2="30" /><line x1="16" y1="54" x2="92" y2="54" />
+                <line x1="16" y1="78" x2="92" y2="78" /><line x1="16" y1="102" x2="52" y2="102" />
+                <text x="54" y="141" text-anchor="middle">app.js</text>
+              </g></g>
+            </g>
+
+            <g transform="translate(76 346)"><g class="repo-git">
+              <rect width="344" height="50" rx="25" />
+              <circle cx="26" cy="25" r="6" />
+              <text x="46" y="31">.git/ tracks every change</text>
+            </g></g>
+
+            <g class="repo-link">
+              <path class="viz-guide" d="M616 270 H 680" />
+              <polygon class="viz-arrow" points="694,270 678,261 678,279" />
+            </g>
+
+            <g class="repo-panel">
+              <rect class="repo-panel-bg" x="700" y="70" width="450" height="366" rx="18" />
+              <text class="repo-panel-title" x="730" y="116">git log</text>
+              <path class="repo-rail" d="M746 178 V 376" />
+            </g>
+
+            <g class="repo-commit"><circle cx="746" cy="178" r="10" /><text class="repo-hash" x="774" y="184">a1b2c3d</text><text class="repo-msg" x="884" y="184">initial commit</text></g>
+            <g class="repo-commit"><circle cx="746" cy="244" r="10" /><text class="repo-hash" x="774" y="250">4e5f6a7</text><text class="repo-msg" x="884" y="250">add index.html</text></g>
+            <g class="repo-commit"><circle cx="746" cy="310" r="10" /><text class="repo-hash" x="774" y="316">89b0c1d</text><text class="repo-msg" x="884" y="316">add styles.css</text></g>
+            <g class="repo-commit"><circle cx="746" cy="376" r="10" /><text class="repo-hash" x="774" y="382">2f3a4b5</text><text class="repo-msg" x="884" y="382">add app.js</text></g>
+
+            <g transform="translate(1102 376)"><g class="gg-head">
+              <rect x="-32" y="-15" width="64" height="30" rx="15" /><text x="0" y="1">HEAD</text>
+            </g></g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>Add a <code>README.md</code> so future-you (and everyone else) knows what the repo does.</li>
@@ -76,7 +146,7 @@
               <li>Pick a license early if you plan to share it. No license = "all rights reserved."</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories" target="_blank" rel="noopener">GitHub Docs — About repositories</a></li>
@@ -84,64 +154,13 @@
               <li><a href="https://github.com/github/gitignore" target="_blank" rel="noopener">github/gitignore — starter <code>.gitignore</code> files</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="repo" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--repo" viewBox="0 0 520 360" role="img" aria-labelledby="repoTitle">
-            <title id="repoTitle">A folder filling up with tracked files</title>
-            <!-- folder -->
-            <g class="repo-folder">
-              <path class="repo-tab" d="M60 90 h130 l24 26 h246 v14 H60 Z" />
-              <rect class="repo-body" x="60" y="110" width="400" height="200" rx="10" />
-            </g>
-            <!-- files inside -->
-            <g class="repo-files">
-              <g class="repo-file" transform="translate(96 140)">
-                <rect width="110" height="130" rx="6" />
-                <line x1="14" y1="24" x2="86" y2="24" />
-                <line x1="14" y1="44" x2="86" y2="44" />
-                <line x1="14" y1="64" x2="70" y2="64" />
-                <line x1="14" y1="84" x2="86" y2="84" />
-                <text x="14" y="118">README.md</text>
-              </g>
-              <g class="repo-file" transform="translate(216 140)">
-                <rect width="110" height="130" rx="6" />
-                <line x1="14" y1="24" x2="86" y2="24" />
-                <line x1="14" y1="44" x2="66" y2="44" />
-                <line x1="14" y1="64" x2="86" y2="64" />
-                <line x1="14" y1="84" x2="74" y2="84" />
-                <text x="14" y="118">index.html</text>
-              </g>
-              <g class="repo-file" transform="translate(336 140)">
-                <rect width="110" height="130" rx="6" />
-                <line x1="14" y1="24" x2="86" y2="24" />
-                <line x1="14" y1="44" x2="86" y2="44" />
-                <line x1="14" y1="64" x2="60" y2="64" />
-                <line x1="14" y1="84" x2="86" y2="84" />
-                <text x="14" y="118">styles.css</text>
-              </g>
-            </g>
-            <!-- history dots -->
-            <g class="repo-history">
-              <line x1="90" y1="332" x2="430" y2="332" />
-              <circle class="repo-dot" cx="120" cy="332" r="7" />
-              <circle class="repo-dot" cx="200" cy="332" r="7" />
-              <circle class="repo-dot" cx="280" cy="332" r="7" />
-              <circle class="repo-dot" cx="360" cy="332" r="7" />
-              <circle class="repo-dot repo-dot--head" cx="430" cy="332" r="8" />
-            </g>
-            <text class="repo-label" x="260" y="60" text-anchor="middle">my-project/</text>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 2. CLONE ------------------------------------------------------- -->
-    <section class="concept concept--flip" id="clone" data-anim="clone">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">02</p>
+    <section class="concept" id="clone" data-anim="clone">
+      <div class="concept__head">
+        <p class="concept__num">02</p>
           <h2 class="concept__title">Clone</h2>
           <p class="concept__what">
             <strong>What it does.</strong> Downloads a full copy of a remote
@@ -149,7 +168,63 @@
             — to your machine. After cloning, you have your own working copy
             connected to the original via a remote called <code>origin</code>.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="clone" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--clone" viewBox="0 0 1200 480" role="img" aria-labelledby="cloneTitle">
+            <title id="cloneTitle">Files streaming from a remote server down to a laptop</title>
+
+            <g class="clone-term">
+              <rect class="clone-term-bg" x="290" y="26" width="620" height="60" rx="14" />
+              <circle class="t-dot t-dot--r" cx="316" cy="56" r="5" />
+              <circle class="t-dot t-dot--y" cx="334" cy="56" r="5" />
+              <circle class="t-dot t-dot--g" cx="352" cy="56" r="5" />
+              <text class="clone-cmd" x="378" y="63"></text>
+            </g>
+
+            <g transform="translate(70 120)"><g class="clone-remote">
+              <rect class="clone-server" x="0" y="0" width="290" height="270" rx="20" />
+              <g class="clone-slot"><rect x="20" y="22" width="250" height="68" rx="12" /><circle cx="46" cy="56" r="7" /><text x="68" y="63">main</text><circle class="clone-slot-dot" cx="212" cy="56" r="5" /><circle class="clone-slot-dot" cx="232" cy="56" r="5" /><circle class="clone-slot-dot" cx="252" cy="56" r="5" /></g>
+              <g class="clone-slot"><rect x="20" y="102" width="250" height="68" rx="12" /><circle cx="46" cy="136" r="7" /><text x="68" y="143">feat/login</text><circle class="clone-slot-dot" cx="232" cy="136" r="5" /><circle class="clone-slot-dot" cx="252" cy="136" r="5" /></g>
+              <g class="clone-slot"><rect x="20" y="182" width="250" height="68" rx="12" /><circle cx="46" cy="216" r="7" /><text x="68" y="223">fix/typo</text><circle class="clone-slot-dot" cx="252" cy="216" r="5" /></g>
+              <text class="clone-label" x="145" y="314" text-anchor="middle">origin</text>
+              <text class="clone-sub" x="145" y="340" text-anchor="middle">github.com/you/repo</text>
+            </g></g>
+
+            <g transform="translate(840 165)"><g class="clone-local">
+              <rect class="clone-laptop" x="0" y="0" width="290" height="190" rx="16" />
+              <rect class="clone-screen" x="14" y="14" width="262" height="162" rx="6" />
+              <text class="clone-screen-title" x="30" y="40">~/repo</text>
+              <g class="clone-file"><rect x="30" y="50" width="18" height="14" rx="3" /><text x="58" y="62">README.md</text></g>
+              <g class="clone-file"><rect x="30" y="73" width="18" height="14" rx="3" /><text x="58" y="85">index.html</text></g>
+              <g class="clone-file"><rect x="30" y="96" width="18" height="14" rx="3" /><text x="58" y="108">styles.css</text></g>
+              <g class="clone-file"><rect x="30" y="119" width="18" height="14" rx="3" /><text x="58" y="131">app.js</text></g>
+              <g class="clone-file clone-file--git"><rect x="30" y="142" width="18" height="14" rx="3" /><text x="58" y="154">.git (full history)</text></g>
+              <path class="clone-base" d="M-24 190 H314 l-16 24 H-8 z" />
+              <text class="clone-label" x="145" y="266" text-anchor="middle">local</text>
+              <text class="clone-sub" x="145" y="292" text-anchor="middle">your machine</text>
+            </g></g>
+
+            <path id="clonePath" class="viz-guide" d="M366 255 C 520 120, 690 390, 834 255" />
+
+            <g class="clone-packet"><rect x="-17" y="-13" width="34" height="26" rx="5" /><line x1="-9" y1="-3" x2="9" y2="-3" /><line x1="-9" y1="5" x2="4" y2="5" /></g>
+            <g class="clone-packet"><rect x="-17" y="-13" width="34" height="26" rx="5" /><line x1="-9" y1="-3" x2="9" y2="-3" /><line x1="-9" y1="5" x2="4" y2="5" /></g>
+            <g class="clone-packet"><rect x="-17" y="-13" width="34" height="26" rx="5" /><line x1="-9" y1="-3" x2="9" y2="-3" /><line x1="-9" y1="5" x2="4" y2="5" /></g>
+            <g class="clone-packet"><rect x="-17" y="-13" width="34" height="26" rx="5" /><line x1="-9" y1="-3" x2="9" y2="-3" /><line x1="-9" y1="5" x2="4" y2="5" /></g>
+            <g class="clone-packet"><rect x="-17" y="-13" width="34" height="26" rx="5" /><line x1="-9" y1="-3" x2="9" y2="-3" /><line x1="-9" y1="5" x2="4" y2="5" /></g>
+
+            <g transform="translate(605 255)"><g class="clone-link">
+              <rect x="-72" y="-19" width="144" height="38" rx="19" />
+              <text x="0" y="6" text-anchor="middle">origin</text>
+            </g></g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>SSH clones (<code>git@github.com:…</code>) don't prompt for a password each time; HTTPS often does.</li>
@@ -157,7 +232,7 @@
               <li>Clone puts things in a new folder named after the repo — <code>cd</code> into it before you run anything.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://git-scm.com/docs/git-clone" target="_blank" rel="noopener">git-scm.com — <code>git clone</code></a></li>
@@ -165,55 +240,69 @@
               <li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" target="_blank" rel="noopener">GitHub Docs — Connecting with SSH</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="clone" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--clone" viewBox="0 0 520 360" role="img" aria-labelledby="cloneTitle">
-            <title id="cloneTitle">Files streaming from a remote server down to a laptop</title>
-            <!-- remote (cloud/server) -->
-            <g class="clone-remote" transform="translate(360 70)">
-              <rect x="0" y="0" width="120" height="80" rx="10" class="clone-server" />
-              <circle cx="18" cy="20" r="4" />
-              <circle cx="34" cy="20" r="4" />
-              <line x1="18" y1="42" x2="102" y2="42" />
-              <line x1="18" y1="58" x2="80" y2="58" />
-              <text x="60" y="102" text-anchor="middle" class="clone-label">origin</text>
-            </g>
-            <!-- laptop -->
-            <g class="clone-local" transform="translate(40 200)">
-              <rect x="10" y="0" width="140" height="90" rx="6" class="clone-laptop" />
-              <rect x="20" y="10" width="120" height="70" rx="2" class="clone-screen" />
-              <path d="M0 92 h160 l-10 14 h-140 z" class="clone-base" />
-              <text x="80" y="126" text-anchor="middle" class="clone-label">local</text>
-            </g>
-            <!-- path -->
-            <path id="clonePath" class="clone-path" d="M420 150 C 320 190, 220 200, 130 235" />
-            <!-- packets riding the path -->
-            <g class="clone-packets">
-              <rect class="clone-packet" x="-10" y="-8" width="24" height="16" rx="3" />
-              <rect class="clone-packet" x="-10" y="-8" width="24" height="16" rx="3" />
-              <rect class="clone-packet" x="-10" y="-8" width="24" height="16" rx="3" />
-              <rect class="clone-packet" x="-10" y="-8" width="24" height="16" rx="3" />
-            </g>
-            <text class="clone-cmd" x="260" y="330" text-anchor="middle">$ git clone git@github.com:you/repo.git</text>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 3. BRANCH ------------------------------------------------------ -->
     <section class="concept" id="branch" data-anim="branch">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">03</p>
+      <div class="concept__head">
+        <p class="concept__num">03</p>
           <h2 class="concept__title">Branch</h2>
           <p class="concept__what">
             <strong>What it does.</strong> Creates a safe, parallel timeline off
             of the main codebase. Work on a branch until it's ready, then merge
             it back. <code>main</code> stays green while you experiment.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="branch" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--branch gitgraph" viewBox="0 0 1200 480" role="img" aria-labelledby="branchTitle">
+            <title id="branchTitle">A feature branch splitting off from main while main keeps moving</title>
+
+            <text class="gg-label gg-label--main" x="44" y="307">main</text>
+            <text class="gg-label gg-label--feat" x="44" y="157">feat/login</text>
+            <path class="gg-lane" d="M200 150 H 430" />
+
+            <path class="gg-line gg-line--main" d="M150 300 H 1120" />
+            <path class="gg-line gg-line--feat" d="M300 300 C 360 300, 380 150, 450 150 H 900" />
+
+            <circle class="gg-ring" cx="300" cy="300" r="28" />
+
+            <g class="gg-commits gg-commits--base">
+              <g class="gg-commit"><circle cx="210" cy="300" r="16" /><text class="gg-hash" x="210" y="342">a1b</text></g>
+              <g class="gg-commit"><circle cx="300" cy="300" r="16" /><text class="gg-hash" x="300" y="342">c2d</text></g>
+            </g>
+            <g class="gg-commits gg-commits--after">
+              <g class="gg-commit"><circle cx="470" cy="300" r="16" /><text class="gg-hash" x="470" y="342">e3f</text></g>
+              <g class="gg-commit"><circle cx="640" cy="300" r="16" /><text class="gg-hash" x="640" y="342">4g5</text></g>
+              <g class="gg-commit"><circle cx="810" cy="300" r="16" /><text class="gg-hash" x="810" y="342">6h7</text></g>
+              <g class="gg-commit"><circle cx="980" cy="300" r="16" /><text class="gg-hash" x="980" y="342">8i9</text></g>
+            </g>
+            <g class="gg-commits gg-commits--feat">
+              <g class="gg-commit gg-commit--feat"><circle cx="560" cy="150" r="16" /><text class="gg-hash" x="560" y="116">j0k</text></g>
+              <g class="gg-commit gg-commit--feat"><circle cx="700" cy="150" r="16" /><text class="gg-hash" x="700" y="116">l1m</text></g>
+              <g class="gg-commit gg-commit--feat"><circle cx="840" cy="150" r="16" /><text class="gg-hash" x="840" y="116">n2o</text></g>
+            </g>
+
+            <g transform="translate(840 76)"><g class="gg-head">
+              <rect x="-32" y="-15" width="64" height="30" rx="15" /><text x="0" y="1">HEAD</text>
+            </g></g>
+
+            <g class="gg-callout">
+              <path class="gg-callout-line" d="M300 388 V 360" />
+              <polygon class="viz-arrow viz-arrow--accent" points="300,350 293,364 307,364" />
+              <text class="viz-cmd" x="300" y="420" text-anchor="middle"></text>
+            </g>
+
+            <text class="viz-cap" x="600" y="464" text-anchor="middle">two timelines, one repo — main is untouched by your experiment</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>Name branches for their intent: <code>feat/onboarding-empty-state</code>, <code>fix/login-typo</code>.</li>
@@ -221,7 +310,7 @@
               <li><code>main</code> is the default in new GitHub repos; older repos may use <code>master</code>.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell" target="_blank" rel="noopener">Pro Git — Branches in a nutshell</a></li>
@@ -229,54 +318,85 @@
               <li><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching (interactive)</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="branch" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--branch gitgraph" viewBox="0 0 520 360" role="img" aria-labelledby="branchTitle">
-            <title id="branchTitle">A feature branch splitting off from main</title>
-            <!-- main line -->
-            <path class="gg-line gg-line--main" d="M40 210 L 480 210" />
-            <!-- feature line -->
-            <path class="gg-line gg-line--feat" d="M200 210 C 240 210, 260 130, 300 130 L 480 130" />
-            <!-- main commits -->
-            <g class="gg-commits gg-commits--main">
-              <g class="gg-commit"><circle cx="80"  cy="210" r="10"/><text class="gg-hash" x="80"  y="236">a1b</text></g>
-              <g class="gg-commit"><circle cx="140" cy="210" r="10"/><text class="gg-hash" x="140" y="236">c2d</text></g>
-              <g class="gg-commit"><circle cx="200" cy="210" r="10"/><text class="gg-hash" x="200" y="236">e3f</text></g>
-              <g class="gg-commit"><circle cx="320" cy="210" r="10"/><text class="gg-hash" x="320" y="236">4g5</text></g>
-              <g class="gg-commit"><circle cx="420" cy="210" r="10"/><text class="gg-hash" x="420" y="236">6h7</text></g>
-            </g>
-            <!-- feature commits -->
-            <g class="gg-commits gg-commits--feat">
-              <g class="gg-commit"><circle cx="320" cy="130" r="10"/><text class="gg-hash" x="320" y="108">8i9</text></g>
-              <g class="gg-commit"><circle cx="380" cy="130" r="10"/><text class="gg-hash" x="380" y="108">j0k</text></g>
-              <g class="gg-commit"><circle cx="440" cy="130" r="10"/><text class="gg-hash" x="440" y="108">l1m</text></g>
-            </g>
-            <!-- HEAD tag on tip of feature -->
-            <g class="gg-head" transform="translate(440 92)">
-              <rect x="-22" y="-14" width="44" height="20" rx="10" />
-              <text x="0" y="0">HEAD</text>
-            </g>
-            <text class="gg-label gg-label--main" x="20" y="210" dy="4">main</text>
-            <text class="gg-label gg-label--feat" x="20" y="130" dy="4">feat/</text>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 4. COMMIT ------------------------------------------------------ -->
-    <section class="concept concept--flip" id="commit" data-anim="commit">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">04</p>
+    <section class="concept" id="commit" data-anim="commit">
+      <div class="concept__head">
+        <p class="concept__num">04</p>
           <h2 class="concept__title">Commit</h2>
           <p class="concept__what">
             <strong>What it does.</strong> A snapshot of your project at a moment
             in time, plus a short message describing what changed and why. Each
             commit gets a unique hash and stacks onto the history.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="commit" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--commit" viewBox="0 0 1200 480" role="img" aria-labelledby="commitTitle">
+            <title id="commitTitle">A changed file moving from the working directory to the staging area and into the commit history</title>
+
+            <text class="cm-head" x="200" y="88" text-anchor="middle">working directory</text>
+            <text class="cm-head" x="600" y="88" text-anchor="middle">staging area</text>
+            <text class="cm-head" x="1000" y="88" text-anchor="middle">repository</text>
+
+            <rect class="cm-box" x="50"  y="110" width="300" height="300" rx="20" />
+            <rect class="cm-box" x="450" y="110" width="300" height="300" rx="20" />
+            <rect class="cm-box" x="850" y="110" width="300" height="300" rx="20" />
+
+            <!-- working directory -->
+            <g transform="translate(80 170)"><rect class="cm-ghost" width="240" height="56" rx="10" /></g>
+            <g transform="translate(80 170)"><g class="cm-file cm-file--mod">
+              <rect width="240" height="56" rx="10" /><text x="20" y="35">index.html</text>
+              <circle class="cm-mod" cx="212" cy="28" r="8" />
+            </g></g>
+            <g transform="translate(80 250)"><g class="cm-file cm-file--plain"><rect width="240" height="56" rx="10" /><text x="20" y="35">styles.css</text></g></g>
+            <g transform="translate(80 330)"><g class="cm-file cm-file--plain"><rect width="240" height="56" rx="10" /><text x="20" y="35">app.js</text></g></g>
+
+            <!-- staging slot -->
+            <g class="cm-slot">
+              <rect x="480" y="170" width="240" height="56" rx="10" />
+              <text x="600" y="204" text-anchor="middle">staged changes land here</text>
+            </g>
+
+            <!-- arrows -->
+            <g class="cm-arrow">
+              <path class="viz-guide" d="M362 198 H 430" /><polygon class="viz-arrow" points="442,198 428,190 428,206" />
+              <text x="400" y="176" text-anchor="middle">add</text>
+            </g>
+            <g class="cm-arrow">
+              <path class="viz-guide" d="M762 198 H 830" /><polygon class="viz-arrow" points="842,198 828,190 828,206" />
+              <text x="800" y="176" text-anchor="middle">commit</text>
+            </g>
+
+            <!-- repository history -->
+            <g transform="translate(870 148)"><rect class="cm-slot2" width="260" height="62" rx="10" /></g>
+            <g transform="translate(870 226)"><g class="cm-commit cm-commit--old">
+              <rect width="260" height="62" rx="10" /><circle cx="28" cy="31" r="9" />
+              <text class="cm-hash" x="50" y="27">4e5f6a7</text><text class="cm-msg" x="50" y="49">add hero section</text>
+            </g></g>
+            <g transform="translate(870 304)"><g class="cm-commit cm-commit--old">
+              <rect width="260" height="62" rx="10" /><circle cx="28" cy="31" r="9" />
+              <text class="cm-hash" x="50" y="27">a1b2c3d</text><text class="cm-msg" x="50" y="49">initial commit</text>
+            </g></g>
+            <g transform="translate(870 148)"><g class="cm-commit cm-commit--new">
+              <rect width="260" height="62" rx="10" /><circle cx="28" cy="31" r="9" />
+              <text class="cm-hash" x="50" y="27">7c9e1d2</text><text class="cm-msg" x="50" y="49">fix hero spacing</text>
+            </g></g>
+            <g transform="translate(1122 148)"><g class="gg-head">
+              <rect x="-32" y="-15" width="64" height="30" rx="15" /><text x="0" y="1">HEAD</text>
+            </g></g>
+
+            <text class="viz-cmd" x="600" y="454" text-anchor="middle"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>Write the message for the person reviewing tomorrow — imperative mood: <em>"add empty-state illustration"</em>.</li>
@@ -284,7 +404,7 @@
               <li>Team using <a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener">Conventional Commits</a>? Match the format: <code>feat:</code>, <code>fix:</code>, <code>chore:</code>.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://cbea.ms/git-commit/" target="_blank" rel="noopener">Chris Beams — How to write a Git commit message</a></li>
@@ -292,46 +412,13 @@
               <li><a href="https://git-scm.com/docs/git-commit" target="_blank" rel="noopener">git-scm.com — <code>git commit</code></a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="commit" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--commit" viewBox="0 0 520 360" role="img" aria-labelledby="commitTitle">
-            <title id="commitTitle">Commit snapshots stacking up over time</title>
-            <g class="commit-card" data-i="0">
-              <rect x="60"  y="70" width="380" height="60" rx="10" />
-              <circle cx="90"  cy="100" r="10" />
-              <text x="112" y="94">a1b2c3d</text>
-              <text x="112" y="118">initial commit</text>
-            </g>
-            <g class="commit-card" data-i="1">
-              <rect x="60"  y="140" width="380" height="60" rx="10" />
-              <circle cx="90"  cy="170" r="10" />
-              <text x="112" y="164">4e5f6a7</text>
-              <text x="112" y="188">add hero section</text>
-            </g>
-            <g class="commit-card" data-i="2">
-              <rect x="60"  y="210" width="380" height="60" rx="10" />
-              <circle cx="90"  cy="240" r="10" />
-              <text x="112" y="234">89b0c1d</text>
-              <text x="112" y="258">wire up GSAP timelines</text>
-            </g>
-            <g class="commit-card commit-card--head" data-i="3">
-              <rect x="60"  y="280" width="380" height="60" rx="10" />
-              <circle cx="90"  cy="310" r="10" />
-              <text x="112" y="304">2f3a4b5</text>
-              <text x="112" y="328">polish spacing + accessibility ← HEAD</text>
-            </g>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 5. PUSH / PULL ------------------------------------------------- -->
     <section class="concept" id="pushpull" data-anim="pushpull">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">05</p>
+      <div class="concept__head">
+        <p class="concept__num">05</p>
           <h2 class="concept__title">Push &amp; Pull</h2>
           <p class="concept__what">
             <strong>What they do.</strong> <em>Push</em> uploads your local
@@ -339,7 +426,84 @@
             downloads other people's commits and merges them into your branch —
             it's <code>fetch</code> + <code>merge</code> in one step.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="pushpull" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--pushpull gitgraph" viewBox="0 0 1200 480" role="img" aria-labelledby="pushpullTitle">
+            <title id="pushpullTitle">Pull brings a teammate's commit down to local, then push sends your two commits up to the remote</title>
+
+            <!-- legend -->
+            <g class="pp-legend">
+              <circle class="gg-dot gg-dot--me" cx="486" cy="52" r="9" /><text x="504" y="58">yours</text>
+              <circle class="gg-dot gg-dot--team" cx="606" cy="52" r="9" /><text x="624" y="58">teammate's</text>
+            </g>
+
+            <!-- boxes -->
+            <g class="pp-box-local">
+              <rect class="pp-box" x="40" y="100" width="380" height="290" rx="22" />
+              <text class="pp-title" x="66" y="146">local</text>
+              <text class="pp-sub" x="66" y="172">your machine</text>
+            </g>
+            <g class="pp-box-remote">
+              <rect class="pp-box" x="780" y="100" width="380" height="290" rx="22" />
+              <text class="pp-title" x="806" y="146">remote</text>
+              <text class="pp-sub" x="806" y="172">origin on GitHub</text>
+            </g>
+
+            <!-- chains -->
+            <path class="gg-line pp-chain pp-chain--local" d="M72 270 H 388" />
+            <path class="gg-line pp-chain pp-chain--remote" d="M812 270 H 1128" />
+
+            <!-- ghost slots -->
+            <circle class="pp-ghost pp-ghost--local" cx="269" cy="270" r="16" />
+            <circle class="pp-ghost pp-ghost--remote" cx="1009" cy="270" r="16" />
+            <circle class="pp-ghost pp-ghost--remote" cx="1067" cy="270" r="16" />
+
+            <!-- local commits -->
+            <g class="pp-local-commits">
+              <g class="gg-commit"><circle cx="95"  cy="270" r="16" /><text class="gg-hash" x="95"  y="310">a1b</text></g>
+              <g class="gg-commit"><circle cx="153" cy="270" r="16" /><text class="gg-hash" x="153" y="310">b2c</text></g>
+              <g class="gg-commit"><circle cx="211" cy="270" r="16" /><text class="gg-hash" x="211" y="310">c3d</text></g>
+              <g class="gg-commit gg-commit--team"><circle cx="269" cy="270" r="16" /><text class="gg-hash" x="269" y="310">t4e</text></g>
+              <g class="gg-commit gg-commit--me"><circle cx="327" cy="270" r="16" /><text class="gg-hash" x="327" y="310">l5f</text></g>
+              <g class="gg-commit gg-commit--me"><circle cx="385" cy="270" r="16" /><text class="gg-hash" x="385" y="310">l6g</text></g>
+            </g>
+            <!-- remote commits -->
+            <g class="pp-remote-commits">
+              <g class="gg-commit"><circle cx="835"  cy="270" r="16" /><text class="gg-hash" x="835"  y="310">a1b</text></g>
+              <g class="gg-commit"><circle cx="893"  cy="270" r="16" /><text class="gg-hash" x="893"  y="310">b2c</text></g>
+              <g class="gg-commit"><circle cx="951"  cy="270" r="16" /><text class="gg-hash" x="951"  y="310">c3d</text></g>
+              <g class="gg-commit gg-commit--team"><circle cx="1009" cy="270" r="16" /><text class="gg-hash" x="1009" y="310">t4e</text></g>
+              <g class="gg-commit gg-commit--me"><circle cx="1067" cy="270" r="16" /><text class="gg-hash" x="1067" y="310">l5f</text></g>
+              <g class="gg-commit gg-commit--me"><circle cx="1125" cy="270" r="16" /><text class="gg-hash" x="1125" y="310">l6g</text></g>
+            </g>
+
+            <!-- lanes -->
+            <g class="pp-lane pp-lane--push">
+              <path id="ppPush" class="viz-guide" d="M440 205 H 760" />
+              <polygon class="viz-arrow" points="770,205 754,196 754,214" />
+              <text x="600" y="186" text-anchor="middle">git push</text>
+            </g>
+            <g class="pp-lane pp-lane--pull">
+              <path id="ppPull" class="viz-guide" d="M760 335 H 440" />
+              <polygon class="viz-arrow" points="430,335 446,326 446,344" />
+              <text x="600" y="368" text-anchor="middle">git pull</text>
+            </g>
+
+            <!-- flying commits -->
+            <g class="pp-fly pp-fly--team"><circle r="15" /></g>
+            <g class="pp-fly pp-fly--me"><circle r="15" /></g>
+            <g class="pp-fly pp-fly--me"><circle r="15" /></g>
+
+            <text class="viz-cap" x="600" y="446" text-anchor="middle"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>Pull (or <code>fetch</code>) before you start work so you rebase on the latest, not the stale.</li>
@@ -347,7 +511,7 @@
               <li><code>git pull --rebase</code> keeps history linear instead of creating merge commits.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://git-scm.com/docs/git-push" target="_blank" rel="noopener">git-scm.com — <code>git push</code></a></li>
@@ -355,47 +519,13 @@
               <li><a href="https://www.atlassian.com/git/tutorials/syncing" target="_blank" rel="noopener">Atlassian — Syncing (push, pull, fetch)</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="pushpull" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--pushpull" viewBox="0 0 520 360" role="img" aria-labelledby="pushpullTitle">
-            <title id="pushpullTitle">Commits moving up (push) and down (pull) between local and remote</title>
-            <!-- remote box -->
-            <g class="pp-remote">
-              <rect x="180" y="30" width="160" height="80" rx="12" />
-              <text x="260" y="76" text-anchor="middle">remote (origin)</text>
-            </g>
-            <!-- local box -->
-            <g class="pp-local">
-              <rect x="180" y="250" width="160" height="80" rx="12" />
-              <text x="260" y="296" text-anchor="middle">local</text>
-            </g>
-            <!-- push arrow -->
-            <g class="pp-push">
-              <path d="M220 250 L220 110" class="pp-track" />
-              <polygon points="220,100 214,114 226,114" class="pp-arrow" />
-              <text x="200" y="185" text-anchor="end">push</text>
-            </g>
-            <!-- pull arrow -->
-            <g class="pp-pull">
-              <path d="M300 110 L300 250" class="pp-track" />
-              <polygon points="300,260 294,246 306,246" class="pp-arrow" />
-              <text x="320" y="185">pull</text>
-            </g>
-            <!-- packets -->
-            <rect class="pp-packet pp-packet--up"   x="212" y="230" width="16" height="12" rx="2" />
-            <rect class="pp-packet pp-packet--down" x="292" y="120" width="16" height="12" rx="2" />
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 6. FETCH ------------------------------------------------------- -->
-    <section class="concept concept--flip" id="fetch" data-anim="fetch">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">06</p>
+    <section class="concept" id="fetch" data-anim="fetch">
+      <div class="concept__head">
+        <p class="concept__num">06</p>
           <h2 class="concept__title">Fetch</h2>
           <p class="concept__what">
             <strong>What it does.</strong> Downloads new commits and branches
@@ -404,7 +534,73 @@
             directory or move your current branch. Think of it as
             <em>pull minus merge</em>: safe to run anytime.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="fetch" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--fetch gitgraph" viewBox="0 0 1200 480" role="img" aria-labelledby="fetchTitle">
+            <title id="fetchTitle">Two new commits flow from the remote into origin/main while local main stays put</title>
+
+            <g transform="translate(820 34)"><g class="fetch-remote">
+              <rect class="viz-box" x="0" y="0" width="300" height="64" rx="18" />
+              <text class="fetch-remote-text" x="150" y="41" text-anchor="middle">remote · origin</text>
+            </g></g>
+
+            <text class="gg-label gg-label--muted" x="44" y="237">origin/main</text>
+            <text class="gg-label" x="44" y="357">main</text>
+
+            <!-- rails -->
+            <path class="gg-line gg-line--origin fetch-rail-origin" d="M200 230 H 780" />
+            <path class="gg-line fetch-rail-main" d="M200 350 H 540" />
+
+            <!-- empty slots the new commits will land in -->
+            <circle class="pp-ghost fetch-slot" cx="620" cy="230" r="16" />
+            <circle class="pp-ghost fetch-slot" cx="730" cy="230" r="16" />
+
+            <!-- origin/main commits -->
+            <g class="fetch-origin-commits">
+              <g class="gg-commit gg-commit--origin"><circle cx="240" cy="230" r="16" /><text class="gg-hash" x="240" y="270">a1b</text></g>
+              <g class="gg-commit gg-commit--origin"><circle cx="330" cy="230" r="16" /><text class="gg-hash" x="330" y="270">c2d</text></g>
+              <g class="gg-commit gg-commit--origin"><circle cx="420" cy="230" r="16" /><text class="gg-hash" x="420" y="270">e3f</text></g>
+              <g class="gg-commit gg-commit--origin"><circle cx="510" cy="230" r="16" /><text class="gg-hash" x="510" y="270">4g5</text></g>
+            </g>
+            <g class="fetch-new-commits">
+              <g class="gg-commit gg-commit--new"><circle cx="620" cy="230" r="16" /><text class="gg-hash" x="620" y="270">n1w</text></g>
+              <g class="gg-commit gg-commit--new"><circle cx="730" cy="230" r="16" /><text class="gg-hash" x="730" y="270">n2w</text></g>
+            </g>
+
+            <!-- local main commits -->
+            <g class="fetch-main-commits">
+              <g class="gg-commit"><circle cx="240" cy="350" r="16" /><text class="gg-hash" x="240" y="390">a1b</text></g>
+              <g class="gg-commit"><circle cx="330" cy="350" r="16" /><text class="gg-hash" x="330" y="390">c2d</text></g>
+              <g class="gg-commit"><circle cx="420" cy="350" r="16" /><text class="gg-hash" x="420" y="390">e3f</text></g>
+              <g class="gg-commit"><circle cx="510" cy="350" r="16" /><text class="gg-hash" x="510" y="390">4g5</text></g>
+            </g>
+            <g transform="translate(510 306)"><g class="gg-head">
+              <rect x="-32" y="-15" width="64" height="30" rx="15" /><text x="0" y="1">HEAD</text>
+            </g></g>
+
+            <!-- download routes -->
+            <path id="fetchPathA" class="viz-guide fetch-route" d="M900 98 C 900 170, 620 130, 620 210" />
+            <path id="fetchPathB" class="viz-guide fetch-route" d="M990 98 C 990 180, 730 140, 730 210" />
+            <g class="fetch-packet"><circle r="15" /></g>
+            <g class="fetch-packet"><circle r="15" /></g>
+
+            <!-- behind indicator -->
+            <g transform="translate(675 304)"><g class="fetch-behind">
+              <rect x="-100" y="-19" width="200" height="38" rx="19" />
+              <text x="0" y="6" text-anchor="middle">main is 2 behind</text>
+            </g></g>
+
+            <text class="fetch-note" x="600" y="358">← your branch &amp; files: untouched</text>
+            <text class="viz-cmd" x="600" y="448" text-anchor="middle"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>Run <code>git fetch</code> before <code>git status</code> to see whether you're behind the remote.</li>
@@ -412,7 +608,7 @@
               <li>Use <code>git fetch --prune</code> to also drop local references to branches that were deleted on the remote.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://git-scm.com/docs/git-fetch" target="_blank" rel="noopener">git-scm.com — <code>git fetch</code></a></li>
@@ -420,71 +616,76 @@
               <li><a href="https://jvns.ca/blog/2024/03/25/how-does-git-fetch-work/" target="_blank" rel="noopener">Julia Evans — How does <code>git fetch</code> work?</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="fetch" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--fetch" viewBox="0 0 520 360" role="img" aria-labelledby="fetchTitle">
-            <title id="fetchTitle">Two new commits flowing from remote into origin/main while local main stays put</title>
-
-            <!-- remote box -->
-            <g class="fetch-remote">
-              <rect x="180" y="20" width="160" height="56" rx="12" />
-              <text x="260" y="53" text-anchor="middle">remote</text>
-            </g>
-
-            <!-- path from remote down to end of origin rail -->
-            <path id="fetchPath" class="fetch-path" d="M260 76 C 260 150, 320 210, 380 245" />
-
-            <!-- local main rail (unchanged by fetch) -->
-            <g class="fetch-main">
-              <text class="fetch-label" x="20" y="174">main</text>
-              <path class="fetch-line" d="M60 170 L 260 170" />
-              <g class="fetch-commit"><circle cx="100" cy="170" r="10"/><text class="fetch-hash" x="100" y="196">a1b</text></g>
-              <g class="fetch-commit"><circle cx="170" cy="170" r="10"/><text class="fetch-hash" x="170" y="196">c2d</text></g>
-              <g class="fetch-commit"><circle cx="240" cy="170" r="10"/><text class="fetch-hash" x="240" y="196">e3f</text></g>
-              <!-- HEAD stays here -->
-              <g class="fetch-head" transform="translate(240 138)">
-                <rect x="-22" y="-14" width="44" height="20" rx="10" />
-                <text x="0" y="0">HEAD</text>
-              </g>
-            </g>
-
-            <!-- origin/main rail (grows during fetch) -->
-            <g class="fetch-origin">
-              <text class="fetch-label fetch-label--muted" x="20" y="254">origin/main</text>
-              <path class="fetch-line fetch-line--dashed" d="M60 250 L 460 250" />
-              <g class="fetch-commit"><circle cx="100" cy="250" r="10"/><text class="fetch-hash" x="100" y="276">a1b</text></g>
-              <g class="fetch-commit"><circle cx="170" cy="250" r="10"/><text class="fetch-hash" x="170" y="276">c2d</text></g>
-              <g class="fetch-commit"><circle cx="240" cy="250" r="10"/><text class="fetch-hash" x="240" y="276">e3f</text></g>
-              <g class="fetch-commit fetch-new"><circle cx="310" cy="250" r="10"/><text class="fetch-hash" x="310" y="276">n1w</text></g>
-              <g class="fetch-commit fetch-new"><circle cx="380" cy="250" r="10"/><text class="fetch-hash" x="380" y="276">n2w</text></g>
-            </g>
-
-            <!-- packets that fly down along fetchPath -->
-            <rect class="fetch-packet fetch-packet--a" x="-10" y="-8" width="20" height="16" rx="3" />
-            <rect class="fetch-packet fetch-packet--b" x="-10" y="-8" width="20" height="16" rx="3" />
-
-            <text class="fetch-caption" x="260" y="325" text-anchor="middle">
-              fetch = download only. Your <tspan class="fetch-caption--em">main</tspan> is untouched.
-            </text>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 7. DIFF -------------------------------------------------------- -->
     <section class="concept" id="diff" data-anim="diff">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">07</p>
+      <div class="concept__head">
+        <p class="concept__num">07</p>
           <h2 class="concept__title">Diff</h2>
           <p class="concept__what">
             <strong>What it does.</strong> Shows the exact lines that changed
             between two versions of the code — usually your working copy vs. the
             last commit, or one branch vs. another. Red = removed, green = added.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="diff" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--diff" viewBox="0 0 1200 480" role="img" aria-labelledby="diffTitle">
+            <title id="diffTitle">Two file versions side by side with removed and added lines highlighted</title>
+
+            <!-- before -->
+            <g class="diff-file">
+              <rect class="diff-panel" x="50" y="40" width="520" height="390" rx="16" />
+              <text class="diff-filename" x="76" y="82">before.js</text>
+              <text class="diff-tag diff-tag--del" x="546" y="82" text-anchor="end">HEAD~1</text>
+              <path class="diff-rule" d="M50 96 H 570" />
+            </g>
+            <!-- after -->
+            <g class="diff-file">
+              <rect class="diff-panel" x="630" y="40" width="520" height="390" rx="16" />
+              <text class="diff-filename" x="656" y="82">after.js</text>
+              <text class="diff-tag diff-tag--add" x="1126" y="82" text-anchor="end">working copy</text>
+              <path class="diff-rule" d="M630 96 H 1150" />
+            </g>
+
+            <!-- before rows -->
+            <g class="diff-line" data-kind="ctx"><text class="diff-num" x="82" y="148">1</text><text class="diff-code" x="126" y="148">function greet(name) {</text></g>
+            <g class="diff-line" data-kind="del"><rect class="diff-hl" x="64" y="164" width="492" height="34" /><text class="diff-num" x="82" y="188">2</text><text class="diff-sign" x="106" y="188">−</text><text class="diff-code" x="126" y="188">  return "hi " + name;</text></g>
+            <g class="diff-line" data-kind="ctx"><text class="diff-num" x="82" y="228">3</text><text class="diff-code" x="126" y="228">}</text></g>
+            <g class="diff-line" data-kind="ctx"><text class="diff-num" x="82" y="268">4</text></g>
+            <g class="diff-line" data-kind="ctx"><text class="diff-num" x="82" y="308">5</text><text class="diff-code" x="126" y="308">const user = "sam";</text></g>
+            <g class="diff-line" data-kind="del"><rect class="diff-hl" x="64" y="324" width="492" height="34" /><text class="diff-num" x="82" y="348">6</text><text class="diff-sign" x="106" y="348">−</text><text class="diff-code" x="126" y="348">console.log(greet(user));</text></g>
+            <g class="diff-line" data-kind="del"><rect class="diff-hl" x="64" y="364" width="492" height="34" /><text class="diff-num" x="82" y="388">7</text><text class="diff-sign" x="106" y="388">−</text><text class="diff-code" x="126" y="388">// TODO: polish</text></g>
+
+            <!-- after rows -->
+            <g class="diff-line" data-kind="ctx"><text class="diff-num" x="662" y="148">1</text><text class="diff-code" x="706" y="148">function greet(name) {</text></g>
+            <g class="diff-line" data-kind="add"><rect class="diff-hl" x="644" y="164" width="492" height="34" /><text class="diff-num" x="662" y="188">2</text><text class="diff-sign" x="686" y="188">+</text><text class="diff-code" x="706" y="188">  return `Hi, ${name}!`;</text></g>
+            <g class="diff-line" data-kind="ctx"><text class="diff-num" x="662" y="228">3</text><text class="diff-code" x="706" y="228">}</text></g>
+            <g class="diff-line" data-kind="ctx"><text class="diff-num" x="662" y="268">4</text></g>
+            <g class="diff-line" data-kind="ctx"><text class="diff-num" x="662" y="308">5</text><text class="diff-code" x="706" y="308">const user = "sam";</text></g>
+            <g class="diff-line" data-kind="add"><rect class="diff-hl" x="644" y="324" width="492" height="34" /><text class="diff-num" x="662" y="348">6</text><text class="diff-sign" x="686" y="348">+</text><text class="diff-code" x="706" y="348">console.info(greet(user));</text></g>
+            <g class="diff-line" data-kind="add"><rect class="diff-hl" x="644" y="364" width="492" height="34" /><text class="diff-num" x="662" y="388">7</text><text class="diff-sign" x="686" y="388">+</text><text class="diff-code" x="706" y="388">export { greet };</text></g>
+
+            <!-- change connectors -->
+            <g class="diff-arrow"><path class="viz-guide" d="M578 181 H 616" /><polygon class="viz-arrow" points="624,181 612,174 612,188" /></g>
+            <g class="diff-arrow"><path class="viz-guide" d="M578 341 H 616" /><polygon class="viz-arrow" points="624,341 612,334 612,348" /></g>
+            <g class="diff-arrow"><path class="viz-guide" d="M578 381 H 616" /><polygon class="viz-arrow" points="624,381 612,374 612,388" /></g>
+
+            <!-- summary -->
+            <g transform="translate(600 458)"><g class="diff-summary">
+              <g class="diff-chip diff-chip--add"><rect x="-158" y="-17" width="136" height="34" rx="17" /><text x="-90" y="6" text-anchor="middle">+3 added</text></g>
+              <g class="diff-chip diff-chip--del"><rect x="-10" y="-17" width="160" height="34" rx="17" /><text x="70" y="6" text-anchor="middle">−3 removed</text></g>
+            </g></g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li><code>git diff</code> shows unstaged changes; <code>git diff --staged</code> shows what's about to be committed.</li>
@@ -492,7 +693,7 @@
               <li>GitHub's "Files changed" tab is the same diff, rendered with syntax highlighting.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://git-scm.com/docs/git-diff" target="_blank" rel="noopener">git-scm.com — <code>git diff</code></a></li>
@@ -500,51 +701,65 @@
               <li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-comparing-branches-in-pull-requests" target="_blank" rel="noopener">GitHub — Comparing branches</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="diff" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--diff" viewBox="0 0 520 360" role="img" aria-labelledby="diffTitle">
-            <title id="diffTitle">Two file versions side by side with added and removed lines highlighted</title>
-            <!-- left (before) -->
-            <g class="diff-file">
-              <rect x="30" y="40" width="210" height="280" rx="8" />
-              <text x="45" y="65">before.js</text>
-              <g class="diff-line" data-kind="ctx"><rect x="42" y="82"  width="186" height="20" /><text x="52" y="97">function greet(name) {</text></g>
-              <g class="diff-line" data-kind="del"><rect x="42" y="106" width="186" height="20" /><text x="52" y="121">  return "hi " + name;</text></g>
-              <g class="diff-line" data-kind="ctx"><rect x="42" y="130" width="186" height="20" /><text x="52" y="145">}</text></g>
-              <g class="diff-line" data-kind="ctx"><rect x="42" y="154" width="186" height="20" /><text x="52" y="169">const user = "sam";</text></g>
-              <g class="diff-line" data-kind="del"><rect x="42" y="178" width="186" height="20" /><text x="52" y="193">console.log(greet(user));</text></g>
-              <g class="diff-line" data-kind="ctx"><rect x="42" y="202" width="186" height="20" /><text x="52" y="217">// TODO: polish</text></g>
-            </g>
-            <!-- right (after) -->
-            <g class="diff-file">
-              <rect x="280" y="40" width="210" height="280" rx="8" />
-              <text x="295" y="65">after.js</text>
-              <g class="diff-line" data-kind="ctx"><rect x="292" y="82"  width="186" height="20" /><text x="302" y="97">function greet(name) {</text></g>
-              <g class="diff-line" data-kind="add"><rect x="292" y="106" width="186" height="20" /><text x="302" y="121">  return `Hi, ${name}!`;</text></g>
-              <g class="diff-line" data-kind="ctx"><rect x="292" y="130" width="186" height="20" /><text x="302" y="145">}</text></g>
-              <g class="diff-line" data-kind="ctx"><rect x="292" y="154" width="186" height="20" /><text x="302" y="169">const user = "sam";</text></g>
-              <g class="diff-line" data-kind="add"><rect x="292" y="178" width="186" height="20" /><text x="302" y="193">console.info(greet(user));</text></g>
-              <g class="diff-line" data-kind="add"><rect x="292" y="202" width="186" height="20" /><text x="302" y="217">export { greet };</text></g>
-            </g>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 8. MERGE ------------------------------------------------------- -->
-    <section class="concept concept--flip" id="merge" data-anim="merge">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">08</p>
+    <section class="concept" id="merge" data-anim="merge">
+      <div class="concept__head">
+        <p class="concept__num">08</p>
           <h2 class="concept__title">Merge</h2>
           <p class="concept__what">
             <strong>What it does.</strong> Combines the work of one branch into
             another. A "merge commit" ties the two histories together so you can
             see exactly where a branch joined <code>main</code>.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="merge" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--merge gitgraph" viewBox="0 0 1200 480" role="img" aria-labelledby="mergeTitle">
+            <title id="mergeTitle">A feature branch rejoining main with a merge commit that has two parents</title>
+
+            <text class="gg-label gg-label--main" x="44" y="307">main</text>
+            <text class="gg-label gg-label--feat" x="44" y="157">feat/login</text>
+            <path class="gg-lane" d="M200 150 H 430" />
+
+            <path class="gg-line gg-line--main" d="M150 300 H 700" />
+            <path class="gg-line gg-line--feat" d="M300 300 C 360 300, 380 150, 450 150 H 800" />
+            <path class="gg-line gg-line--main gg-join gg-join--main" d="M700 300 H 960" />
+            <path class="gg-line gg-line--feat gg-join gg-join--feat" d="M800 150 C 880 150, 900 300, 960 300" />
+
+            <g class="gg-commits gg-commits--main">
+              <g class="gg-commit"><circle cx="200" cy="300" r="16" /><text class="gg-hash" x="200" y="342">a1b</text></g>
+              <g class="gg-commit"><circle cx="300" cy="300" r="16" /><text class="gg-hash" x="300" y="342">c2d</text></g>
+              <g class="gg-commit"><circle cx="490" cy="300" r="16" /><text class="gg-hash" x="490" y="342">e3f</text></g>
+              <g class="gg-commit"><circle cx="680" cy="300" r="16" /><text class="gg-hash" x="680" y="342">g4h</text></g>
+            </g>
+            <g class="gg-commits gg-commits--feat">
+              <g class="gg-commit gg-commit--feat"><circle cx="540" cy="150" r="16" /><text class="gg-hash" x="540" y="116">4g5</text></g>
+              <g class="gg-commit gg-commit--feat"><circle cx="650" cy="150" r="16" /><text class="gg-hash" x="650" y="116">6h7</text></g>
+              <g class="gg-commit gg-commit--feat"><circle cx="760" cy="150" r="16" /><text class="gg-hash" x="760" y="116">8i9</text></g>
+            </g>
+
+            <circle class="gg-ripple" cx="960" cy="300" r="24" />
+            <g class="gg-merge">
+              <circle class="gg-merge__dot" cx="960" cy="300" r="24" />
+              <text class="gg-hash gg-hash--merge" x="960" y="350">m3rg</text>
+            </g>
+            <g transform="translate(960 388)"><g class="gg-head">
+              <rect x="-32" y="-15" width="64" height="30" rx="15" /><text x="0" y="1">HEAD</text>
+            </g></g>
+
+            <text class="viz-cmd" x="600" y="432" text-anchor="middle"></text>
+            <text class="viz-cap" x="600" y="464" text-anchor="middle">one merge commit, two parents — the history stays truthful</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>Fast-forward merges (no divergence) just move the pointer — no merge commit.</li>
@@ -552,7 +767,7 @@
               <li>If two people touched the same lines, expect a <em>merge conflict</em> (concept #09).</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://git-scm.com/docs/git-merge" target="_blank" rel="noopener">git-scm.com — <code>git merge</code></a></li>
@@ -560,52 +775,71 @@
               <li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges" target="_blank" rel="noopener">GitHub — About PR merges (merge, squash, rebase)</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="merge" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--merge gitgraph" viewBox="0 0 520 360" role="img" aria-labelledby="mergeTitle">
-            <title id="mergeTitle">A feature branch rejoining main with a merge commit</title>
-            <path class="gg-line gg-line--main" d="M40 210 L 460 210" />
-            <path class="gg-line gg-line--feat" d="M120 210 C 160 210, 180 130, 220 130 L 380 130 C 420 130, 440 210, 460 210" />
-            <g class="gg-commits gg-commits--main">
-              <g class="gg-commit"><circle cx="80"  cy="210" r="10"/><text class="gg-hash" x="80"  y="236">a1b</text></g>
-              <g class="gg-commit"><circle cx="120" cy="210" r="10"/><text class="gg-hash" x="120" y="236">c2d</text></g>
-              <g class="gg-commit"><circle cx="260" cy="210" r="10"/><text class="gg-hash" x="260" y="236">e3f</text></g>
-            </g>
-            <g class="gg-commits gg-commits--feat">
-              <g class="gg-commit"><circle cx="220" cy="130" r="10"/><text class="gg-hash" x="220" y="108">4g5</text></g>
-              <g class="gg-commit"><circle cx="300" cy="130" r="10"/><text class="gg-hash" x="300" y="108">6h7</text></g>
-              <g class="gg-commit"><circle cx="380" cy="130" r="10"/><text class="gg-hash" x="380" y="108">8i9</text></g>
-            </g>
-            <g class="gg-merge">
-              <circle class="gg-merge__dot" cx="460" cy="210" r="14" />
-              <text class="gg-hash" x="460" y="242">m3rg</text>
-            </g>
-            <!-- HEAD tag on merge commit -->
-            <g class="gg-head" transform="translate(460 178)">
-              <rect x="-22" y="-14" width="44" height="20" rx="10" />
-              <text x="0" y="0">HEAD</text>
-            </g>
-            <text class="gg-label gg-label--main" x="20" y="210" dy="4">main</text>
-            <text class="gg-label gg-label--feat" x="20" y="130" dy="4">feat/</text>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 9. REBASE ------------------------------------------------------ -->
     <section class="concept" id="rebase" data-anim="rebase">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">09</p>
+      <div class="concept__head">
+        <p class="concept__num">09</p>
           <h2 class="concept__title">Rebase</h2>
           <p class="concept__what">
             <strong>What it does.</strong> Takes the commits from your branch,
             lifts them off, and replays them on top of the latest <code>main</code>
             as if you'd started fresh. The result is a clean, linear history.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="rebase" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--rebase gitgraph" viewBox="0 0 1200 480" role="img" aria-labelledby="rebaseTitle">
+            <title id="rebaseTitle">Feature commits lifted off their old base and replayed on top of a newer main</title>
+
+            <text class="gg-label gg-label--main" x="44" y="327">main</text>
+            <text class="gg-label gg-label--feat" x="44" y="157">feat/login</text>
+
+            <!-- main -->
+            <path class="gg-line gg-line--main" d="M130 320 H 700" />
+            <g class="rebase-base">
+              <g class="gg-commit"><circle cx="180" cy="320" r="16" /><text class="gg-hash" x="180" y="362">a1b</text></g>
+              <g class="gg-commit"><circle cx="270" cy="320" r="16" /><text class="gg-hash" x="270" y="362">c2d</text></g>
+              <g class="gg-commit"><circle cx="360" cy="320" r="16" /><text class="gg-hash" x="360" y="362">e3f</text></g>
+            </g>
+            <g class="rebase-new">
+              <g class="gg-commit gg-commit--dark"><circle cx="540" cy="320" r="16" /><text class="gg-hash" x="540" y="362">n1w</text></g>
+              <g class="gg-commit gg-commit--dark"><circle cx="650" cy="320" r="16" /><text class="gg-hash" x="650" y="362">n2w</text></g>
+            </g>
+
+            <!-- old branch position -->
+            <path class="gg-line gg-line--feat rebase-old-line" d="M360 320 C 420 320, 440 150, 500 150 H 720" />
+            <g class="rebase-ghosts">
+              <g class="gg-ghost"><circle cx="520" cy="150" r="16" /></g>
+              <g class="gg-ghost"><circle cx="610" cy="150" r="16" /></g>
+              <g class="gg-ghost"><circle cx="700" cy="150" r="16" /></g>
+            </g>
+
+            <!-- new branch position -->
+            <path class="gg-line gg-line--feat rebase-new-line" d="M650 320 C 720 320, 740 150, 800 150 H 1110" />
+
+            <!-- the feature commits that travel -->
+            <g class="rebase-movers">
+              <g class="gg-commit gg-commit--feat"><circle cx="520" cy="150" r="16" /><text class="gg-hash" x="520" y="116">f1a</text></g>
+              <g class="gg-commit gg-commit--feat"><circle cx="610" cy="150" r="16" /><text class="gg-hash" x="610" y="116">f2b</text></g>
+              <g class="gg-commit gg-commit--feat"><circle cx="700" cy="150" r="16" /><text class="gg-hash" x="700" y="116">f3c</text></g>
+            </g>
+            <g transform="translate(700 76)"><g class="gg-head">
+              <rect x="-32" y="-15" width="64" height="30" rx="15" /><text x="0" y="1">HEAD</text>
+            </g></g>
+
+            <text class="viz-cmd" x="600" y="426" text-anchor="middle"></text>
+            <text class="viz-cap" x="600" y="460" text-anchor="middle">same changes, brand-new commits — a straight line, no merge commit</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>Rebase rewrites history — never rebase a branch that other people are working on.</li>
@@ -613,7 +847,7 @@
               <li>If it goes sideways, <code>git rebase --abort</code> gets you safely back where you started.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing" target="_blank" rel="noopener">Pro Git — Rebasing</a></li>
@@ -621,51 +855,90 @@
               <li><a href="https://docs.github.com/en/get-started/using-git/about-git-rebase" target="_blank" rel="noopener">GitHub Docs — About <code>git rebase</code></a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="rebase" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--rebase gitgraph" viewBox="0 0 520 360" role="img" aria-labelledby="rebaseTitle">
-            <title id="rebaseTitle">Feature commits being lifted off and replayed on top of a newer main</title>
-            <path class="gg-line gg-line--main" d="M40 240 L 480 240" />
-            <text class="gg-label gg-label--main" x="20" y="240" dy="4">main</text>
-            <text class="gg-label gg-label--feat" x="20" y="120" dy="4">feat/</text>
-            <!-- main commits (last two are "new" ones that arrived after the branch) -->
-            <g class="rebase-main">
-              <g class="gg-commit"><circle cx="80"  cy="240" r="10"/><text class="gg-hash" x="80"  y="266">a1b</text></g>
-              <g class="gg-commit"><circle cx="140" cy="240" r="10"/><text class="gg-hash" x="140" y="266">c2d</text></g>
-              <g class="gg-commit"><circle cx="200" cy="240" r="10"/><text class="gg-hash" x="200" y="266">e3f</text></g>
-              <g class="gg-commit rebase-new"><circle cx="280" cy="240" r="10"/><text class="gg-hash" x="280" y="266">n1w</text></g>
-              <g class="gg-commit rebase-new"><circle cx="340" cy="240" r="10"/><text class="gg-hash" x="340" y="266">n2w</text></g>
-            </g>
-            <!-- feature commits (start above old base, then lift + shift on top of new HEAD) -->
-            <g class="rebase-feat">
-              <g class="gg-commit"><circle cx="240" cy="120" r="10"/><text class="gg-hash" x="240" y="98">f1a</text></g>
-              <g class="gg-commit"><circle cx="300" cy="120" r="10"/><text class="gg-hash" x="300" y="98">f2b</text></g>
-              <g class="gg-commit"><circle cx="360" cy="120" r="10"/><text class="gg-hash" x="360" y="98">f3c</text></g>
-            </g>
-            <!-- HEAD tag rides with the last feature commit -->
-            <g class="rebase-head gg-head" transform="translate(360 90)">
-              <rect x="-22" y="-14" width="44" height="20" rx="10" />
-              <text x="0" y="0">HEAD</text>
-            </g>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 10. MERGE CONFLICT --------------------------------------------- -->
-    <section class="concept concept--flip" id="conflict" data-anim="conflict">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">10</p>
+    <section class="concept" id="conflict" data-anim="conflict">
+      <div class="concept__head">
+        <p class="concept__num">10</p>
           <h2 class="concept__title">Merge conflict</h2>
           <p class="concept__what">
             <strong>What it is.</strong> Two branches changed the same lines of
             the same file in different ways, and Git can't decide which one
             wins. It stops and asks you to pick — or write a hybrid — by hand.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="conflict" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--conflict" viewBox="0 0 1200 480" role="img" aria-labelledby="conflictTitle">
+            <title id="conflictTitle">Two branches edit the same line, collide, and Git marks a conflict until someone resolves it</title>
+            <defs>
+              <clipPath id="conflictClip"><rect x="200" y="40" width="800" height="380" rx="16" /></clipPath>
+            </defs>
+
+            <g class="cf-panel">
+              <rect class="cf-panel-bg" x="200" y="40" width="800" height="380" rx="16" />
+              <circle class="t-dot t-dot--r" cx="230" cy="66" r="6" />
+              <circle class="t-dot t-dot--y" cx="250" cy="66" r="6" />
+              <circle class="t-dot t-dot--g" cx="270" cy="66" r="6" />
+              <text class="cf-filename" x="298" y="72">theme.js</text>
+              <text class="cf-status" x="936" y="72" text-anchor="end">merging feat/login into main</text>
+              <path class="diff-rule" d="M200 90 H 1000" />
+            </g>
+
+            <g clip-path="url(#conflictClip)">
+              <!-- untouched lines -->
+              <g class="cf-line"><text class="diff-num" x="228" y="136">1</text><text class="cf-code" x="254" y="136">const theme = {</text></g>
+              <g class="cf-line"><text class="diff-num" x="228" y="174">2</text><text class="cf-code" x="254" y="174">  name: "brand",</text></g>
+              <g class="cf-line"><text class="diff-num" x="228" y="402">8</text><text class="cf-code" x="254" y="402">};</text></g>
+
+              <!-- slot where the edits meet -->
+              <rect class="cf-slot" x="214" y="187" width="772" height="185" rx="10" />
+
+              <!-- conflict markers -->
+              <g class="cf-marker"><rect x="214" y="187" width="772" height="33" /><text class="diff-num" x="228" y="212">3</text><text x="254" y="212">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</text></g>
+              <g class="cf-marker"><rect x="214" y="263" width="772" height="33" /><text class="diff-num" x="228" y="288">5</text><text x="254" y="288">=======</text></g>
+              <g class="cf-marker"><rect x="214" y="339" width="772" height="33" /><text class="diff-num" x="228" y="364">7</text><text x="254" y="364">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feat/login</text></g>
+
+              <!-- ours (from main) and theirs (from feat/login) -->
+              <g transform="translate(214 225)"><g class="cf-ours">
+                <rect width="772" height="33" rx="6" />
+                <text class="diff-num" x="14" y="25">4</text>
+                <text class="cf-code" x="40" y="25">  color: "orange",</text>
+                <text class="cf-tag" x="758" y="24" text-anchor="end">HEAD · main</text>
+              </g></g>
+              <g transform="translate(214 301)"><g class="cf-theirs">
+                <rect width="772" height="33" rx="6" />
+                <text class="diff-num" x="14" y="25">6</text>
+                <text class="cf-code" x="40" y="25">  color: "teal",</text>
+                <text class="cf-tag" x="758" y="24" text-anchor="end">feat/login</text>
+              </g></g>
+
+              <!-- the resolved line -->
+              <g transform="translate(214 225)"><g class="cf-resolved">
+                <rect width="772" height="33" rx="6" />
+                <text class="diff-num" x="14" y="25">3</text>
+                <text class="cf-code" x="40" y="25">  color: "coral",</text>
+                <text class="cf-tag" x="758" y="24" text-anchor="end">resolved by you</text>
+              </g></g>
+            </g>
+
+            <!-- status badges -->
+            <g transform="translate(1000 62)">
+              <g class="cf-warn"><circle r="30" /><text x="0" y="12" text-anchor="middle">!</text></g>
+              <g class="cf-ok"><circle r="30" /><path d="M-11 1 L-3 10 L12 -8" /></g>
+            </g>
+
+            <text class="viz-cap cf-caption" x="600" y="462" text-anchor="middle"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>Look for the conflict markers: <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>. Delete them once resolved.</li>
@@ -673,7 +946,7 @@
               <li>Editors like VS Code and Cursor have visual "Accept incoming / Accept current / Accept both" buttons.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/about-merge-conflicts" target="_blank" rel="noopener">GitHub Docs — About merge conflicts</a></li>
@@ -681,43 +954,13 @@
               <li><a href="https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts" target="_blank" rel="noopener">Atlassian — Resolving merge conflicts</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="conflict" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--conflict" viewBox="0 0 520 360" role="img" aria-labelledby="conflictTitle">
-            <title id="conflictTitle">Two branches editing the same line collide and a conflict marker appears</title>
-            <!-- file container -->
-            <rect class="conflict-file" x="80" y="60" width="360" height="240" rx="10" />
-            <text class="conflict-filename" x="100" y="88">app.js</text>
-            <!-- "ours" line coming from left -->
-            <g class="conflict-ours">
-              <rect x="100" y="150" width="150" height="26" rx="4" />
-              <text x="112" y="168">color: "orange"</text>
-              <text class="conflict-tag" x="100" y="140">HEAD (ours)</text>
-            </g>
-            <!-- "theirs" line coming from right -->
-            <g class="conflict-theirs">
-              <rect x="270" y="150" width="150" height="26" rx="4" />
-              <text x="282" y="168">color: "teal"</text>
-              <text class="conflict-tag" x="420" y="140" text-anchor="end">feat/ (theirs)</text>
-            </g>
-            <!-- warning -->
-            <g class="conflict-warn">
-              <circle cx="260" cy="230" r="26" />
-              <text x="260" y="238" text-anchor="middle">!</text>
-              <text x="260" y="278" text-anchor="middle" class="conflict-caption">CONFLICT — pick one, or blend both</text>
-            </g>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 11. PULL REQUEST ---------------------------------------------- -->
     <section class="concept" id="pr" data-anim="pr">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">11</p>
+      <div class="concept__head">
+        <p class="concept__num">11</p>
           <h2 class="concept__title">Pull Request <span class="concept__alias">(PR)</span></h2>
           <p class="concept__what">
             <strong>What it is.</strong> A GitHub-flavored proposal that says
@@ -725,7 +968,88 @@
             bundles the diff, discussion, checks (CI, linters), and approvals
             in one place.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="pr" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--pr" viewBox="0 0 1200 480" role="img" aria-labelledby="prTitle">
+            <title id="prTitle">A pull request collecting review comments and passing checks before it is merged</title>
+
+            <g class="pr-card">
+              <rect class="pr-card-bg" x="90" y="30" width="1020" height="420" rx="22" />
+              <text class="pr-title" x="130" y="90"><tspan class="pr-num">#42 </tspan>Add empty-state illustration</text>
+              <text class="pr-meta" x="130" y="124">isabelaklaus wants to merge <tspan class="pr-branch">feat/empty-state</tspan> into <tspan class="pr-branch">main</tspan></text>
+              <path class="diff-rule" d="M90 150 H 1110" />
+              <path class="diff-rule" d="M730 150 V 450" />
+            </g>
+
+            <g transform="translate(1070 72)"><g class="pr-badge" data-state="open">
+              <rect x="-118" y="-20" width="118" height="40" rx="20" /><text x="-59" y="6" text-anchor="middle">Open</text>
+            </g></g>
+
+            <!-- diff stat -->
+            <g class="pr-stat">
+              <text class="pr-add" x="130" y="198">+128</text>
+              <text class="pr-del" x="214" y="198">−14</text>
+              <text class="pr-files" x="290" y="198">3 files changed</text>
+              <rect class="pr-sq pr-sq--add" x="480" y="182" width="20" height="20" rx="4" />
+              <rect class="pr-sq pr-sq--add" x="506" y="182" width="20" height="20" rx="4" />
+              <rect class="pr-sq pr-sq--add" x="532" y="182" width="20" height="20" rx="4" />
+              <rect class="pr-sq pr-sq--add" x="558" y="182" width="20" height="20" rx="4" />
+              <rect class="pr-sq pr-sq--del" x="584" y="182" width="20" height="20" rx="4" />
+            </g>
+
+            <!-- review thread -->
+            <g class="pr-bubble">
+              <circle class="pr-avatar pr-avatar--rv" cx="152" cy="274" r="21" /><text class="pr-avatar-text" x="152" y="280" text-anchor="middle">RV</text>
+              <rect class="pr-bubble-bg" x="192" y="240" width="500" height="68" rx="14" />
+              <text class="pr-bubble-text" x="214" y="280">Looks great — one nit on mobile spacing.</text>
+            </g>
+            <g class="pr-bubble">
+              <circle class="pr-avatar pr-avatar--ik" cx="152" cy="366" r="21" /><text class="pr-avatar-text" x="152" y="372" text-anchor="middle">IK</text>
+              <rect class="pr-bubble-bg" x="192" y="332" width="500" height="68" rx="14" />
+              <text class="pr-bubble-text" x="214" y="372">Fixed in <tspan class="pr-branch">3a9c1de</tspan> — thanks!</text>
+            </g>
+
+            <!-- checks -->
+            <text class="pr-heading" x="770" y="190">CHECKS</text>
+            <g class="pr-check">
+              <circle class="pr-dot" cx="786" cy="236" r="14" />
+              <circle class="pr-spin" cx="786" cy="236" r="14" />
+              <path class="pr-tick" d="M779 236 L784 242 L794 230" />
+              <text x="816" y="243">CI · build &amp; tests</text>
+            </g>
+            <g class="pr-check">
+              <circle class="pr-dot" cx="786" cy="288" r="14" />
+              <circle class="pr-spin" cx="786" cy="288" r="14" />
+              <path class="pr-tick" d="M779 288 L784 294 L794 282" />
+              <text x="816" y="295">Lint · no issues</text>
+            </g>
+            <g class="pr-check">
+              <circle class="pr-dot" cx="786" cy="340" r="14" />
+              <circle class="pr-spin" cx="786" cy="340" r="14" />
+              <path class="pr-tick" d="M779 340 L784 346 L794 334" />
+              <text x="816" y="347">Review approved · 1/1</text>
+            </g>
+
+            <!-- merge button -->
+            <g class="pr-button">
+              <rect x="770" y="378" width="300" height="54" rx="27" />
+              <text x="920" y="411" text-anchor="middle">Merge pull request</text>
+            </g>
+            <g class="pr-burst-group">
+              <circle class="pr-burst" cx="920" cy="405" r="6" /><circle class="pr-burst" cx="920" cy="405" r="6" />
+              <circle class="pr-burst" cx="920" cy="405" r="6" /><circle class="pr-burst" cx="920" cy="405" r="6" />
+              <circle class="pr-burst" cx="920" cy="405" r="6" /><circle class="pr-burst" cx="920" cy="405" r="6" />
+              <circle class="pr-burst" cx="920" cy="405" r="6" /><circle class="pr-burst" cx="920" cy="405" r="6" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>A great PR description explains the <em>why</em>, not just the <em>what</em>. Screenshots and before/after help.</li>
@@ -733,7 +1057,7 @@
               <li>Draft PRs are for "please look, but don't merge yet." Convert to "Ready for review" when it's… ready.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests" target="_blank" rel="noopener">GitHub Docs — About pull requests</a></li>
@@ -741,52 +1065,87 @@
               <li><a href="https://google.github.io/eng-practices/review/reviewer/" target="_blank" rel="noopener">Google — Code review guidelines</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="pr" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--pr" viewBox="0 0 520 360" role="img" aria-labelledby="prTitle">
-            <title id="prTitle">A pull request card with review, checks, and a merge button</title>
-            <g class="pr-card">
-              <rect x="60" y="40" width="400" height="280" rx="14" />
-              <text class="pr-title" x="80" y="80">#42 · Add empty-state illustration</text>
-              <text class="pr-meta"  x="80" y="104">isabelaklaus wants to merge <tspan class="pr-branch">feat/empty-state</tspan> into <tspan class="pr-branch">main</tspan></text>
-
-              <g class="pr-check" data-i="0">
-                <circle cx="90" cy="150" r="10" />
-                <text x="112" y="155">CI · build &amp; tests</text>
-              </g>
-              <g class="pr-check" data-i="1">
-                <circle cx="90" cy="188" r="10" />
-                <text x="112" y="193">Lint · no issues</text>
-              </g>
-              <g class="pr-check" data-i="2">
-                <circle cx="90" cy="226" r="10" />
-                <text x="112" y="231">Review approved · 1/1</text>
-              </g>
-
-              <g class="pr-button">
-                <rect x="80" y="258" width="180" height="42" rx="21" />
-                <text x="170" y="285" text-anchor="middle">Merge pull request</text>
-              </g>
-            </g>
-          </svg>
-        </div>
       </div>
     </section>
 
     <!-- 12. ISSUE ------------------------------------------------------ -->
-    <section class="concept concept--flip" id="issue" data-anim="issue">
-      <div class="concept__grid">
-        <div class="concept__copy">
-          <p class="concept__num">12</p>
+    <section class="concept" id="issue" data-anim="issue">
+      <div class="concept__head">
+        <p class="concept__num">12</p>
           <h2 class="concept__title">Issue</h2>
           <p class="concept__what">
             <strong>What it is.</strong> A ticket for something that needs
             doing — a bug, a feature, a chore, a question. Issues turn a fuzzy
             "we should…" into a linkable, assignable, labelable unit of work.
           </p>
-          <div class="concept__considerations">
+      </div>
+
+      <div class="concept__visual">
+        <button class="replay" data-replay="issue" aria-label="Replay animation">↻ Replay</button>
+        <div class="concept__scroll">
+          <svg class="viz viz--issue" viewBox="0 0 1200 480" role="img" aria-labelledby="issueTitle">
+            <title id="issueTitle">A new issue gets labels, an assignee and a linked pull request, then closes</title>
+
+            <g class="issue-card">
+              <rect class="issue-card-bg" x="70" y="36" width="700" height="408" rx="22" />
+              <text class="issue-title" x="160" y="112">Empty state feels sad on mobile</text>
+              <text class="issue-meta" x="160" y="146">#7 · opened by @isabelaklaus · just now</text>
+              <path class="diff-rule" d="M70 176 H 770" />
+              <text class="issue-h" x="112" y="214">Steps to reproduce</text>
+            </g>
+
+            <!-- state icon -->
+            <g transform="translate(118 104)">
+              <g class="issue-dot"><circle class="issue-dot-ring" r="18" /><circle class="issue-dot-core" r="6" /></g>
+              <circle class="issue-ripple" r="18" />
+              <g class="issue-closed"><circle r="18" /><path d="M-8 1 L-2 8 L9 -6" /></g>
+            </g>
+
+            <!-- status pill -->
+            <g transform="translate(742 124)"><g class="issue-status" data-state="open">
+              <rect x="-100" y="0" width="100" height="36" rx="18" /><text x="-50" y="24" text-anchor="middle">Open</text>
+            </g></g>
+
+            <!-- body -->
+            <g class="issue-body">
+              <path d="M112 244 H 730" /><path d="M112 272 H 700" /><path d="M112 300 H 560" />
+            </g>
+
+            <!-- activity log -->
+            <g class="issue-event"><circle cx="120" cy="330" r="5" /><text x="138" y="336">labeled  bug · design · good first issue</text></g>
+            <g class="issue-event"><circle cx="120" cy="358" r="5" /><text x="138" y="364">assigned  @isabelaklaus</text></g>
+            <g class="issue-event"><circle cx="120" cy="386" r="5" /><text x="138" y="392">linked pull request  #42</text></g>
+            <g class="issue-event issue-event--closed"><circle cx="120" cy="414" r="5" /><text x="138" y="420">closed as completed</text></g>
+
+            <!-- sidebar -->
+            <g class="issue-side">
+              <text class="issue-side-h" x="820" y="88">ASSIGNEES</text><path class="diff-rule" d="M820 100 H 1150" />
+              <text class="issue-side-h" x="820" y="204">LABELS</text><path class="diff-rule" d="M820 216 H 1150" />
+              <text class="issue-side-h" x="820" y="352">LINKED PULL REQUEST</text><path class="diff-rule" d="M820 364 H 1150" />
+              <text class="issue-noone" x="820" y="140">No one yet</text>
+            </g>
+
+            <g transform="translate(838 138)"><g class="issue-assignee">
+              <circle r="20" /><text x="0" y="6" text-anchor="middle">IK</text>
+              <text class="issue-user" x="34" y="7">isabelaklaus</text>
+            </g></g>
+
+            <g transform="translate(820 236)"><g class="issue-label" data-kind="bug"><rect width="76" height="36" rx="18" /><text x="38" y="24" text-anchor="middle">bug</text></g></g>
+            <g transform="translate(904 236)"><g class="issue-label" data-kind="design"><rect width="106" height="36" rx="18" /><text x="53" y="24" text-anchor="middle">design</text></g></g>
+            <g transform="translate(820 284)"><g class="issue-label" data-kind="good"><rect width="200" height="36" rx="18" /><text x="100" y="24" text-anchor="middle">good first issue</text></g></g>
+
+            <g transform="translate(820 382)"><g class="issue-pr">
+              <rect width="330" height="62" rx="16" />
+              <circle class="issue-pr-icon" cx="30" cy="31" r="10" />
+              <text class="issue-pr-title" x="54" y="27">#42 · Closes #7</text>
+              <text class="issue-pr-sub" x="54" y="48">feat/empty-state → main</text>
+            </g></g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="concept__notes">
+        <div class="concept__considerations">
             <h3>Considerations</h3>
             <ul>
               <li>A good issue has clear steps to reproduce (for bugs) or clear acceptance criteria (for features).</li>
@@ -794,7 +1153,7 @@
               <li>Link issues to PRs with "Closes #42" so merging the PR auto-closes the issue.</li>
             </ul>
           </div>
-          <div class="concept__resources">
+        <div class="concept__resources">
             <h3>Resources</h3>
             <ul>
               <li><a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues" target="_blank" rel="noopener">GitHub Docs — About issues</a></li>
@@ -802,48 +1161,6 @@
               <li><a href="https://guides.github.com/features/issues/" target="_blank" rel="noopener">GitHub Guides — Mastering issues</a></li>
             </ul>
           </div>
-        </div>
-
-        <div class="concept__visual">
-          <button class="replay" data-replay="issue" aria-label="Replay animation">↻ Replay</button>
-          <svg class="viz viz--issue" viewBox="0 0 520 360" role="img" aria-labelledby="issueTitle">
-            <title id="issueTitle">A new issue ticket appearing with labels and an assignee</title>
-            <g class="issue-card">
-              <rect x="60" y="60" width="400" height="240" rx="14" />
-              <g class="issue-dot">
-                <circle cx="92" cy="100" r="10" />
-              </g>
-              <text class="issue-title" x="116" y="105">Empty state feels sad on mobile</text>
-              <text class="issue-meta"  x="116" y="130">#7 · opened by @isabelaklaus</text>
-
-              <g class="issue-labels">
-                <g class="issue-label" data-kind="bug">
-                  <rect x="116" y="150" width="60" height="24" rx="12" />
-                  <text x="146" y="167" text-anchor="middle">bug</text>
-                </g>
-                <g class="issue-label" data-kind="design">
-                  <rect x="184" y="150" width="80" height="24" rx="12" />
-                  <text x="224" y="167" text-anchor="middle">design</text>
-                </g>
-                <g class="issue-label" data-kind="good">
-                  <rect x="272" y="150" width="120" height="24" rx="12" />
-                  <text x="332" y="167" text-anchor="middle">good first issue</text>
-                </g>
-              </g>
-
-              <g class="issue-body">
-                <line x1="116" y1="200" x2="404" y2="200" />
-                <line x1="116" y1="220" x2="404" y2="220" />
-                <line x1="116" y1="240" x2="340" y2="240" />
-              </g>
-
-              <g class="issue-assignee">
-                <circle cx="410" cy="100" r="16" />
-                <text x="410" y="105" text-anchor="middle">IK</text>
-              </g>
-            </g>
-          </svg>
-        </div>
       </div>
     </section>
 

@@ -19,6 +19,8 @@
   --add-bg: #cfe6c5;
   --del: #b0322f;
   --del-bg: #f0c9c4;
+  --team: #2f6b8f;       /* a teammate's commits */
+  --purple: #6f4bb8;     /* merged / closed */
   --card: #f8efd4;
   --rule: rgba(20, 19, 17, 0.14);
   --shadow: 0 24px 48px -24px rgba(20, 19, 17, 0.22),
@@ -211,36 +213,35 @@ code {
   border: 1px solid var(--rule);
 }
 
-/* ------------------- CONCEPT SECTIONS ------------------- */
+
+/* ------------------- CONCEPT SECTIONS -------------------
+   Each concept is a three-part stack:
+     1. .concept__head   — number, title and the plain-English definition
+     2. .concept__visual — a full-bleed stage for the animation
+     3. .concept__notes  — considerations + resources side by side
+-------------------------------------------------------- */
 .concept {
   position: relative;
   z-index: 1;
-  padding: 72px 24px;
+  padding: 88px 0 0;
   border-top: 1px solid var(--rule);
 }
-.concept__grid {
+
+.concept__head {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 24px;
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  gap: 56px;
-  align-items: center;
+  grid-template-areas:
+    "num   what"
+    "title what";
+  column-gap: 64px;
+  align-items: end;
 }
-.concept--flip .concept__grid {
-  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-}
-.concept--flip .concept__copy { order: 2; }
-.concept--flip .concept__visual { order: 1; }
-
-@media (max-width: 900px) {
-  .concept__grid,
-  .concept--flip .concept__grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .concept--flip .concept__copy { order: 2; }
-  .concept--flip .concept__visual { order: 1; }
-}
+.concept__num   { grid-area: num; }
+.concept__title { grid-area: title; }
+.concept__what  { grid-area: what; align-self: end; }
 
 .concept__num {
   font-family: var(--font-mono);
@@ -253,25 +254,112 @@ code {
 .concept__title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(40px, 5vw, 64px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin: 0 0 20px;
+  font-size: clamp(44px, 6vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin: 0;
   color: var(--ink);
 }
 .concept__title .concept__alias {
   color: var(--accent-2);
   font-style: italic;
   font-weight: 700;
-  font-size: 0.55em;
+  font-size: 0.5em;
   vertical-align: 0.1em;
   margin-left: 8px;
 }
-.concept__what { margin: 0 0 20px; color: var(--ink-2); max-width: 60ch; }
+.concept__what {
+  margin: 0 0 6px;
+  color: var(--ink-2);
+  max-width: 60ch;
+}
 .concept__what strong { color: var(--ink); }
 
+@media (max-width: 900px) {
+  .concept { padding-top: 64px; }
+  .concept__head {
+    grid-template-columns: 1fr;
+    grid-template-areas: "num" "title" "what";
+    row-gap: 0;
+  }
+  .concept__title { margin-bottom: 20px; }
+}
+
+/* ------------------- STAGE (full-bleed) ------------------- */
+.concept__visual {
+  position: relative;
+  margin-top: 44px;
+  background-color: var(--card);
+  background-image: radial-gradient(rgba(20, 19, 17, 0.11) 1.2px, transparent 1.5px);
+  background-size: 26px 26px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  box-shadow:
+    inset 0 18px 30px -22px rgba(20, 19, 17, 0.16),
+    inset 0 -18px 30px -22px rgba(20, 19, 17, 0.12);
+}
+.concept__visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 420px at 12% 0%, rgba(184, 121, 30, 0.14), transparent 65%),
+    radial-gradient(800px 420px at 100% 100%, rgba(184, 121, 30, 0.10), transparent 60%);
+  pointer-events: none;
+}
+.concept__scroll {
+  position: relative;
+  z-index: 1;
+  overflow-x: auto;
+  padding: 40px 24px 32px;
+}
+.viz {
+  display: block;
+  width: 100%;
+  min-width: 760px;
+  max-width: 1440px;
+  height: auto;
+  max-height: 84vh;
+  margin: 0 auto;
+}
+.replay {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  z-index: 3;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.replay:hover {
+  background: var(--bg-2);
+  transform: translateY(-1px);
+}
+.replay:active { transform: translateY(0); }
+.replay:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ------------------- NOTES ------------------- */
+.concept__notes {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 88px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 64px;
+  row-gap: 32px;
+}
+@media (max-width: 900px) {
+  .concept__notes { grid-template-columns: 1fr; padding-bottom: 64px; }
+}
 .concept__considerations,
-.concept__resources { margin: 20px 0 0; }
+.concept__resources { margin: 0; }
 .concept__considerations h3,
 .concept__resources h3 {
   font-family: var(--font-body);
@@ -280,7 +368,7 @@ code {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent-2);
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 .concept__considerations ul,
 .concept__resources ul {
@@ -310,52 +398,6 @@ code {
   transform: rotate(45deg);
 }
 
-/* ------------------- VISUAL PANEL ------------------- */
-.concept__visual {
-  position: relative;
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-.concept__visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(600px 300px at 20% 0%, rgba(184, 121, 30, 0.08), transparent 60%);
-  pointer-events: none;
-}
-.viz {
-  width: 100%;
-  height: auto;
-  display: block;
-  position: relative;
-  z-index: 1;
-}
-.replay {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 2;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 12px;
-  color: var(--ink);
-  background: var(--bg);
-  border: 1px solid var(--rule);
-  padding: 6px 10px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-.replay:hover {
-  background: var(--bg-2);
-  transform: translateY(-1px);
-}
-.replay:active { transform: translateY(0); }
-
 /* ------------------- FOOTER ------------------- */
 .footer {
   position: relative;
@@ -373,13 +415,65 @@ code {
 
 /* ====================================================================
    ANIMATED SVG STYLES
-   Colors/strokes are set here; motion is done via GSAP in app.js.
+   Every scene is drawn on a 1200 × 480 canvas. Colors and strokes live
+   here; motion lives in app.js. Type sizes are in canvas units, so they
+   scale up with the stage.
 ==================================================================== */
 
 .viz text {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 18px;
   fill: var(--ink);
+}
+
+/* ---------- shared pieces ---------- */
+.viz .viz-cap {
+  font-size: 21px;
+  font-weight: 600;
+  fill: var(--ink-2);
+}
+.viz .viz-cmd {
+  font-size: 24px;
+  font-weight: 600;
+  fill: var(--ink);
+}
+.viz .viz-guide {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-dasharray: 9 9;
+  stroke-linecap: round;
+  opacity: 0.5;
+  animation: march 1.4s linear infinite;
+}
+@keyframes march { to { stroke-dashoffset: -36; } }
+.viz .viz-arrow { fill: var(--ink); opacity: 0.55; }
+.viz .viz-arrow--accent { fill: var(--accent-2); opacity: 1; }
+.viz .viz-box {
+  fill: var(--bg);
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+.viz .diff-rule { fill: none; stroke: var(--ink); stroke-width: 2; opacity: 0.14; }
+.viz .diff-num {
+  font-size: 16px;
+  fill: var(--muted);
+  text-anchor: middle;
+}
+.viz .t-dot--r { fill: #d9776b; }
+.viz .t-dot--y { fill: #e0b04a; }
+.viz .t-dot--g { fill: #7fb069; }
+
+.viz--repo .repo-panel-bg,
+.viz--pushpull .pp-box,
+.viz--commit .cm-box,
+.viz--diff .diff-panel,
+.viz--conflict .cf-panel-bg,
+.viz--pr .pr-card-bg,
+.viz--issue .issue-card-bg,
+.viz--clone .clone-server,
+.viz--clone .clone-laptop {
+  filter: drop-shadow(0 14px 16px rgba(20, 19, 17, 0.13));
 }
 
 /* ---------- 1. REPO ---------- */
@@ -387,455 +481,355 @@ code {
 .viz--repo .repo-body {
   fill: var(--bg-2);
   stroke: var(--ink);
-  stroke-width: 2;
+  stroke-width: 3;
+}
+.viz--repo .repo-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 26px;
 }
 .viz--repo .repo-file rect {
   fill: #fff;
   stroke: var(--ink);
-  stroke-width: 2;
+  stroke-width: 2.5;
 }
 .viz--repo .repo-file line {
   stroke: var(--ink-2);
-  stroke-width: 2;
+  stroke-width: 3.5;
   stroke-linecap: round;
-  opacity: 0.35;
+  opacity: 0.28;
 }
-.viz--repo .repo-file text {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  fill: var(--ink-2);
+.viz--repo .repo-file text { font-size: 14px; fill: var(--ink-2); }
+.viz--repo .repo-git rect { fill: var(--ink); }
+.viz--repo .repo-git circle { fill: var(--accent); }
+.viz--repo .repo-git text { font-size: 17px; font-weight: 600; fill: var(--bg); }
+.viz--repo .repo-panel-bg { fill: #fff; stroke: var(--ink); stroke-width: 3; }
+.viz--repo .repo-panel-title {
+  font-size: 20px;
+  font-weight: 700;
+  fill: var(--accent-2);
+  letter-spacing: 0.06em;
 }
-.viz--repo .repo-label {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 22px;
-  fill: var(--ink);
-}
-.viz--repo .repo-history line {
-  stroke: var(--ink);
-  stroke-width: 2;
-  stroke-dasharray: 4 4;
-  opacity: 0.4;
-}
-.viz--repo .repo-dot {
-  fill: var(--accent);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--repo .repo-dot--head { fill: var(--ink); }
+.viz--repo .repo-rail { fill: none; stroke: var(--ink); stroke-width: 3; opacity: 0.25; stroke-linecap: round; }
+.viz--repo .repo-commit circle { fill: var(--accent); stroke: var(--ink); stroke-width: 3; }
+.viz--repo .repo-hash { font-size: 17px; font-weight: 600; fill: var(--accent-2); }
+.viz--repo .repo-msg { font-size: 19px; fill: var(--ink); }
 
 /* ---------- 2. CLONE ---------- */
+.viz--clone .clone-term-bg { fill: var(--ink); }
+.viz--clone .clone-cmd { font-size: 22px; font-weight: 600; fill: var(--bg); }
 .viz--clone .clone-server,
 .viz--clone .clone-laptop,
 .viz--clone .clone-base {
   fill: var(--bg-2);
   stroke: var(--ink);
-  stroke-width: 2;
+  stroke-width: 3;
 }
-.viz--clone .clone-screen {
-  fill: #fff;
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--clone circle { fill: var(--accent); }
-.viz--clone line { stroke: var(--ink-2); stroke-width: 2; opacity: 0.35; stroke-linecap: round; }
+.viz--clone .clone-slot rect { fill: #fff; stroke: var(--ink); stroke-width: 2.5; }
+.viz--clone .clone-slot circle { fill: var(--add); }
+.viz--clone .clone-slot .clone-slot-dot { fill: var(--accent); }
+.viz--clone .clone-slot text { font-size: 21px; font-weight: 600; }
+.viz--clone .clone-screen { fill: #fff; stroke: var(--ink); stroke-width: 2.5; }
+.viz--clone .clone-screen-title { font-size: 16px; font-weight: 600; fill: var(--muted); }
+.viz--clone .clone-file rect { fill: var(--accent); }
+.viz--clone .clone-file text { font-size: 16px; fill: var(--ink-2); }
+.viz--clone .clone-file--git rect { fill: var(--ink); }
 .viz--clone .clone-label {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 15px;
-  fill: var(--ink);
+  font-weight: 900;
+  font-size: 32px;
 }
-.viz--clone .clone-path {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 2;
-  stroke-dasharray: 5 6;
-  opacity: 0.5;
-}
-.viz--clone .clone-packet {
-  fill: var(--accent);
-  stroke: var(--ink);
-  stroke-width: 1.5;
-}
-.viz--clone .clone-cmd {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  fill: var(--ink-2);
-}
+.viz--clone .clone-sub { font-size: 15px; fill: var(--muted); }
+.viz--clone .clone-packet rect { fill: var(--accent); stroke: var(--ink); stroke-width: 2.5; }
+.viz--clone .clone-packet line { stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; opacity: 0.6; }
+.viz--clone .clone-link rect { fill: var(--ink); }
+.viz--clone .clone-link text { font-size: 21px; font-weight: 700; fill: var(--bg); }
 
-/* ---------- SHARED GIT-GRAPH (branch / merge / rebase) ---------- */
+/* ---------- SHARED GIT GRAPH (branch / merge / rebase / fetch / push-pull) ---------- */
 .gitgraph .gg-line {
   fill: none;
   stroke: var(--ink);
-  stroke-width: 3;
+  stroke-width: 4;
   stroke-linecap: round;
 }
 .gitgraph .gg-line--feat { stroke: var(--accent); }
-.gitgraph .gg-commit circle {
-  fill: var(--bg);
+.gitgraph .gg-line--origin { stroke: var(--muted); opacity: 0.75; }
+.gitgraph .gg-lane {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+  opacity: 0.35;
+}
+.gitgraph .gg-commit circle { fill: var(--bg); stroke: var(--ink); stroke-width: 4; }
+.gitgraph .gg-commit--feat circle { fill: var(--card); stroke: var(--accent); }
+.gitgraph .gg-commit--dark circle { fill: var(--ink); }
+.gitgraph .gg-commit--team circle { fill: var(--team); stroke: var(--ink); }
+.gitgraph .gg-commit--me circle { fill: var(--accent); stroke: var(--ink); }
+.gitgraph .gg-commit--origin circle { stroke: var(--muted); }
+.gitgraph .gg-commit--new circle { fill: var(--accent); stroke: var(--accent-2); }
+.gitgraph .gg-ghost circle,
+.gitgraph .pp-ghost {
+  fill: none;
   stroke: var(--ink);
   stroke-width: 3;
-}
-.gitgraph .gg-commits--feat .gg-commit circle {
-  stroke: var(--accent);
-}
-.gitgraph .rebase-new circle {
-  fill: var(--ink);
-  stroke: var(--ink);
+  stroke-dasharray: 5 6;
+  opacity: 0.4;
 }
 .gitgraph .gg-hash {
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 600;
   fill: var(--muted);
   text-anchor: middle;
 }
-.gitgraph .gg-commits--feat .gg-hash,
-.gitgraph .rebase-feat .gg-hash {
-  fill: var(--accent-2);
-}
+.gitgraph .gg-commit--feat .gg-hash { fill: var(--accent-2); }
+.gitgraph .gg-commit--team .gg-hash { fill: var(--team); }
 .gitgraph .gg-label {
-  font-family: var(--font-mono);
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   fill: var(--ink);
 }
 .gitgraph .gg-label--feat { fill: var(--accent-2); }
-.gitgraph .gg-head rect {
-  fill: var(--ink);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.gitgraph .gg-head text {
-  font-family: var(--font-mono);
-  font-size: 10px;
+.gitgraph .gg-label--muted { fill: var(--muted); }
+.viz .gg-head rect { fill: var(--ink); }
+.viz .gg-head text {
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.08em;
   fill: var(--bg);
   text-anchor: middle;
   dominant-baseline: middle;
 }
-
-/* Merge commit — big filled dot on shared line */
-.viz--merge .gg-merge__dot {
-  fill: var(--accent);
-  stroke: var(--ink);
-  stroke-width: 3;
-}
+.gitgraph .gg-ring { fill: none; stroke: var(--accent); stroke-width: 3; }
+.gitgraph .gg-callout-line { fill: none; stroke: var(--accent-2); stroke-width: 3; stroke-linecap: round; }
+.gitgraph .gg-callout .viz-cmd { fill: var(--accent-2); font-size: 22px; }
+.gitgraph .gg-merge__dot { fill: var(--accent); stroke: var(--ink); stroke-width: 4; }
+.gitgraph .gg-hash--merge { fill: var(--ink); font-weight: 700; }
+.gitgraph .gg-ripple { fill: none; stroke: var(--accent); stroke-width: 4; }
+.gitgraph .gg-dot { stroke: var(--ink); stroke-width: 3; }
+.gitgraph .gg-dot--me { fill: var(--accent); }
+.gitgraph .gg-dot--team { fill: var(--team); }
 
 /* ---------- 4. COMMIT ---------- */
-.viz--commit .commit-card rect {
-  fill: #fff;
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--commit .commit-card circle {
-  fill: var(--accent);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--commit .commit-card text {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  fill: var(--ink);
-}
-.viz--commit .commit-card text:first-of-type { font-weight: 600; fill: var(--accent-2); }
-.viz--commit .commit-card--head rect { fill: #fdf1dc; }
-
-/* ---------- 5. PUSH/PULL ---------- */
-.viz--pushpull rect { fill: var(--bg-2); stroke: var(--ink); stroke-width: 2; }
-.viz--pushpull text {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 16px;
-  fill: var(--ink);
-}
-.viz--pushpull .pp-track {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 2;
-  stroke-dasharray: 4 6;
-  opacity: 0.55;
-}
-.viz--pushpull .pp-arrow { fill: var(--ink); }
-.viz--pushpull .pp-packet {
-  fill: var(--accent);
-  stroke: var(--ink);
-  stroke-width: 1.5;
-}
-.viz--pushpull .pp-push text,
-.viz--pushpull .pp-pull text {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  fill: var(--accent-2);
-}
-
-/* ---------- 6. DIFF ---------- */
-.viz--diff .diff-file > rect {
-  fill: #fff;
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--diff .diff-file > text {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 600;
-  fill: var(--ink);
-}
-.viz--diff .diff-line rect { fill: transparent; }
-.viz--diff .diff-line text {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  fill: var(--ink-2);
-}
-.viz--diff .diff-line[data-kind="add"] rect { fill: var(--add-bg); }
-.viz--diff .diff-line[data-kind="del"] rect { fill: var(--del-bg); }
-.viz--diff .diff-line[data-kind="add"] text { fill: var(--add); }
-.viz--diff .diff-line[data-kind="del"] text { fill: var(--del); text-decoration: line-through; }
-
-/* Merge/Rebase styles live inside the shared .gitgraph block above. */
-
-/* ---------- 6. FETCH ---------- */
-.viz--fetch .fetch-remote rect {
-  fill: var(--bg-2);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--fetch .fetch-remote text {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  fill: var(--ink);
-}
-.viz--fetch .fetch-path {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 2;
-  stroke-dasharray: 5 6;
-  opacity: 0.5;
-}
-.viz--fetch .fetch-line {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 3;
-  stroke-linecap: round;
-}
-.viz--fetch .fetch-line--dashed {
-  stroke: var(--muted);
-  stroke-dasharray: 6 6;
-  opacity: 0.8;
-}
-.viz--fetch .fetch-label {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  fill: var(--ink);
-  font-size: 13px;
-}
-.viz--fetch .fetch-label--muted { fill: var(--muted); }
-.viz--fetch .fetch-commit circle {
-  fill: var(--bg);
-  stroke: var(--ink);
-  stroke-width: 3;
-}
-.viz--fetch .fetch-origin .fetch-commit circle {
-  stroke: var(--muted);
-}
-.viz--fetch .fetch-origin .fetch-commit.fetch-new circle {
-  fill: var(--accent);
-  stroke: var(--accent-2);
-}
-.viz--fetch .fetch-hash {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  fill: var(--muted);
-  text-anchor: middle;
-}
-.viz--fetch .fetch-head rect {
-  fill: var(--ink);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--fetch .fetch-head text {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  fill: var(--bg);
-  text-anchor: middle;
-  dominant-baseline: middle;
-}
-.viz--fetch .fetch-packet {
-  fill: var(--accent);
-  stroke: var(--ink);
-  stroke-width: 1.5;
-}
-.viz--fetch .fetch-caption {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 600;
-  fill: var(--ink-2);
-}
-.viz--fetch .fetch-caption--em {
-  fill: var(--accent-2);
-  font-weight: 700;
-}
-
-/* ---------- 9. CONFLICT ---------- */
-.viz--conflict .conflict-file {
-  fill: #fff;
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--conflict .conflict-filename {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  fill: var(--ink);
-}
-.viz--conflict .conflict-ours rect {
-  fill: var(--add-bg);
-  stroke: var(--add);
-  stroke-width: 2;
-}
-.viz--conflict .conflict-theirs rect {
-  fill: var(--del-bg);
-  stroke: var(--del);
-  stroke-width: 2;
-}
-.viz--conflict .conflict-ours text,
-.viz--conflict .conflict-theirs text {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  fill: var(--ink);
-}
-.viz--conflict .conflict-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  fill: var(--muted);
-}
-.viz--conflict .conflict-warn circle {
-  fill: var(--accent);
-  stroke: var(--ink);
-  stroke-width: 3;
-}
-.viz--conflict .conflict-warn text {
+.viz--commit .cm-head {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 30px;
-  fill: #fff;
+  font-size: 26px;
+  fill: var(--ink-2);
 }
-.viz--conflict .conflict-caption {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 600;
-  fill: var(--accent-2);
-}
-
-/* ---------- 10. PR ---------- */
-.viz--pr .pr-card > rect {
-  fill: #fff;
+.viz--commit .cm-box { fill: var(--bg); stroke: var(--ink); stroke-width: 3; }
+.viz--commit .cm-file rect { fill: #fff; stroke: var(--ink); stroke-width: 2.5; }
+.viz--commit .cm-file text { font-size: 22px; font-weight: 600; }
+.viz--commit .cm-file--mod rect { fill: #fdf1dc; stroke: var(--accent-2); }
+.viz--commit .cm-mod { fill: var(--accent); }
+.viz--commit .cm-ghost {
+  fill: none;
   stroke: var(--ink);
-  stroke-width: 2;
+  stroke-width: 2.5;
+  stroke-dasharray: 6 7;
+  opacity: 0.3;
 }
+.viz--commit .cm-slot rect,
+.viz--commit .cm-slot2 {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-dasharray: 8 8;
+}
+.viz--commit .cm-slot text { font-size: 16px; fill: var(--muted); }
+.viz--commit .cm-arrow text { font-size: 21px; font-weight: 700; fill: var(--accent-2); }
+.viz--commit .cm-commit rect { fill: #fff; stroke: var(--ink); stroke-width: 2.5; }
+.viz--commit .cm-commit circle { fill: var(--accent); stroke: var(--ink); stroke-width: 2.5; }
+.viz--commit .cm-commit--new rect { fill: #fdf1dc; stroke: var(--accent-2); }
+.viz--commit .cm-hash { font-size: 15px; font-weight: 700; fill: var(--accent-2); }
+.viz--commit .cm-msg { font-size: 17px; fill: var(--ink); }
+
+/* ---------- 5. PUSH / PULL ---------- */
+.viz--pushpull .pp-box { fill: var(--bg); stroke: var(--ink); stroke-width: 3; }
+.viz--pushpull .pp-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 32px;
+}
+.viz--pushpull .pp-sub { font-size: 16px; fill: var(--muted); }
+.viz--pushpull .pp-legend text { font-size: 17px; font-weight: 600; fill: var(--ink-2); }
+.viz--pushpull .pp-lane text { font-size: 22px; font-weight: 700; fill: var(--accent-2); }
+.viz--pushpull .pp-fly circle { stroke: var(--ink); stroke-width: 3; }
+.viz--pushpull .pp-fly--me circle { fill: var(--accent); }
+.viz--pushpull .pp-fly--team circle { fill: var(--team); }
+
+/* ---------- 6. FETCH ---------- */
+.viz--fetch .fetch-remote-text {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 26px;
+}
+.viz--fetch .fetch-packet circle { fill: var(--accent); stroke: var(--ink); stroke-width: 3; }
+.viz--fetch .fetch-behind rect { fill: #fdf1dc; stroke: var(--accent-2); stroke-width: 2.5; }
+.viz--fetch .fetch-behind text { font-size: 18px; font-weight: 700; fill: var(--accent-2); }
+.viz--fetch .fetch-note { font-size: 20px; font-weight: 600; fill: var(--muted); }
+
+/* ---------- 7. DIFF ---------- */
+.viz--diff .diff-panel { fill: #fff; stroke: var(--ink); stroke-width: 3; }
+.viz--diff .diff-filename { font-size: 22px; font-weight: 700; }
+.viz--diff .diff-tag { font-size: 16px; font-weight: 600; fill: var(--muted); }
+.viz--diff .diff-sign { font-size: 22px; font-weight: 700; text-anchor: middle; }
+.viz--diff .diff-code { font-size: 22px; fill: var(--ink-2); }
+.viz--diff .diff-hl { opacity: 0; }
+.viz--diff [data-kind="del"] .diff-hl { fill: var(--del-bg); }
+.viz--diff [data-kind="add"] .diff-hl { fill: var(--add-bg); }
+.viz--diff [data-kind="del"] .diff-sign { fill: var(--del); }
+.viz--diff [data-kind="add"] .diff-sign { fill: var(--add); }
+.viz--diff [data-kind="del"] .diff-code { fill: var(--del); }
+.viz--diff [data-kind="add"] .diff-code { fill: var(--add); }
+.viz--diff .diff-chip--add rect { fill: var(--add-bg); stroke: var(--add); stroke-width: 2.5; }
+.viz--diff .diff-chip--add text { font-size: 20px; font-weight: 700; fill: var(--add); }
+.viz--diff .diff-chip--del rect { fill: var(--del-bg); stroke: var(--del); stroke-width: 2.5; }
+.viz--diff .diff-chip--del text { font-size: 20px; font-weight: 700; fill: var(--del); }
+
+/* ---------- 10. CONFLICT ---------- */
+.viz--conflict .cf-panel-bg { fill: #fff; stroke: var(--ink); stroke-width: 3; }
+.viz--conflict .cf-filename { font-size: 22px; font-weight: 700; }
+.viz--conflict .cf-status { font-size: 16px; fill: var(--muted); }
+.viz--conflict .cf-code { font-size: 22px; fill: var(--ink); }
+.viz--conflict .cf-slot {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 3;
+  stroke-dasharray: 8 8;
+}
+.viz--conflict .cf-marker rect { fill: #efe6c9; }
+.viz--conflict .cf-marker text { font-size: 21px; font-weight: 700; fill: var(--muted); }
+.viz--conflict .cf-marker .diff-num { font-size: 16px; font-weight: 400; }
+.viz--conflict .cf-ours rect { fill: var(--add-bg); stroke: var(--add); stroke-width: 2.5; }
+.viz--conflict .cf-theirs rect { fill: var(--del-bg); stroke: var(--del); stroke-width: 2.5; }
+.viz--conflict .cf-resolved rect { fill: #fdf1dc; stroke: var(--accent-2); stroke-width: 2.5; }
+.viz--conflict .cf-tag { font-size: 15px; font-weight: 600; fill: var(--muted); }
+.viz--conflict .cf-warn circle { fill: var(--accent); stroke: var(--ink); stroke-width: 3; }
+.viz--conflict .cf-warn text {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 44px;
+  fill: #fff;
+}
+.viz--conflict .cf-ok circle { fill: var(--add); stroke: var(--ink); stroke-width: 3; }
+.viz--conflict .cf-ok path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.viz--conflict .cf-caption { fill: var(--accent-2); }
+
+/* ---------- 11. PULL REQUEST ---------- */
+.viz--pr .pr-card-bg { fill: #fff; stroke: var(--ink); stroke-width: 3; }
 .viz--pr .pr-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 20px;
-  fill: var(--ink);
+  font-size: 34px;
 }
-.viz--pr .pr-meta {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  fill: var(--muted);
-}
-.viz--pr .pr-branch {
-  fill: var(--accent-2);
-  font-weight: 600;
-}
-.viz--pr .pr-check circle {
-  fill: var(--bg-2);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--pr .pr-check[data-state="done"] circle {
-  fill: var(--add);
-  stroke: var(--add);
-}
-.viz--pr .pr-check text {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  fill: var(--ink);
-}
-.viz--pr .pr-button rect {
-  fill: var(--bg-2);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--pr .pr-button[data-state="ready"] rect {
-  fill: var(--add);
-  stroke: var(--add);
-}
-.viz--pr .pr-button text {
+.viz--pr .pr-num { fill: var(--muted); font-weight: 700; }
+.viz--pr .pr-meta { font-size: 18px; fill: var(--muted); }
+.viz--pr .pr-branch { fill: var(--accent-2); font-weight: 600; }
+.viz--pr .pr-badge rect { fill: var(--add); }
+.viz--pr .pr-badge text { font-family: var(--font-body); font-weight: 700; font-size: 20px; fill: #fff; }
+.viz--pr .pr-badge[data-state="merged"] rect { fill: var(--purple); }
+.viz--pr .pr-add { font-size: 24px; font-weight: 700; fill: var(--add); }
+.viz--pr .pr-del { font-size: 24px; font-weight: 700; fill: var(--del); }
+.viz--pr .pr-files { font-size: 19px; fill: var(--muted); }
+.viz--pr .pr-sq--add { fill: var(--add); }
+.viz--pr .pr-sq--del { fill: var(--del); }
+.viz--pr .pr-avatar { stroke: var(--ink); stroke-width: 2.5; }
+.viz--pr .pr-avatar--rv { fill: var(--team); }
+.viz--pr .pr-avatar--ik { fill: var(--accent); }
+.viz--pr .pr-avatar-text { font-family: var(--font-body); font-weight: 700; font-size: 15px; fill: #fff; }
+.viz--pr .pr-bubble-bg { fill: var(--card); stroke: var(--ink); stroke-width: 2; }
+.viz--pr .pr-bubble-text { font-family: var(--font-body); font-size: 19px; }
+.viz--pr .pr-heading {
   font-family: var(--font-body);
-  font-weight: 700;
   font-size: 14px;
-  fill: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  fill: var(--accent-2);
 }
+.viz--pr .pr-dot { fill: var(--bg-2); stroke: var(--ink); stroke-width: 2.5; }
+.viz--pr .pr-check[data-state="done"] .pr-dot { fill: var(--add); stroke: var(--add); }
+.viz--pr .pr-spin {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-dasharray: 26 62;
+  stroke-linecap: round;
+  opacity: 0;
+}
+.viz--pr .pr-tick {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.viz--pr .pr-check text { font-size: 20px; }
+.viz--pr .pr-button rect { fill: var(--bg-2); stroke: var(--ink); stroke-width: 2.5; }
+.viz--pr .pr-button text { font-family: var(--font-body); font-weight: 700; font-size: 22px; }
+.viz--pr .pr-button[data-state="ready"] rect { fill: var(--add); stroke: var(--add); }
 .viz--pr .pr-button[data-state="ready"] text { fill: #fff; }
+.viz--pr .pr-button[data-state="merged"] rect { fill: var(--purple); stroke: var(--purple); }
+.viz--pr .pr-button[data-state="merged"] text { fill: #fff; }
+.viz--pr .pr-burst { fill: var(--accent); opacity: 0; }
 
-/* ---------- 11. ISSUE ---------- */
-.viz--issue .issue-card > rect {
-  fill: #fff;
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--issue .issue-dot circle {
-  fill: var(--add);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
+/* ---------- 12. ISSUE ---------- */
+.viz--issue .issue-card-bg { fill: #fff; stroke: var(--ink); stroke-width: 3; }
 .viz--issue .issue-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 18px;
-  fill: var(--ink);
+  font-size: 28px;
 }
-.viz--issue .issue-meta {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  fill: var(--muted);
+.viz--issue .issue-meta { font-size: 18px; fill: var(--muted); }
+.viz--issue .issue-h { font-size: 20px; font-weight: 700; }
+.viz--issue .issue-dot-ring { fill: none; stroke: var(--add); stroke-width: 4; }
+.viz--issue .issue-dot-core { fill: var(--add); }
+.viz--issue .issue-ripple { fill: none; stroke: var(--purple); stroke-width: 4; opacity: 0; }
+.viz--issue .issue-closed circle { fill: var(--purple); }
+.viz--issue .issue-closed path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
-.viz--issue .issue-label rect {
-  stroke: var(--ink);
-  stroke-width: 1.5;
+.viz--issue .issue-status rect { fill: var(--add); }
+.viz--issue .issue-status text { font-family: var(--font-body); font-weight: 700; font-size: 18px; fill: #fff; }
+.viz--issue .issue-status[data-state="closed"] rect { fill: var(--purple); }
+.viz--issue .issue-body path { fill: none; stroke: var(--ink); stroke-width: 8; stroke-linecap: round; opacity: 0.12; }
+.viz--issue .issue-event circle { fill: var(--accent); }
+.viz--issue .issue-event text { font-size: 18px; fill: var(--ink-2); }
+.viz--issue .issue-event--closed circle { fill: var(--purple); }
+.viz--issue .issue-side-h {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  fill: var(--accent-2);
 }
+.viz--issue .issue-noone { font-size: 19px; fill: var(--muted); font-style: italic; }
+.viz--issue .issue-assignee circle { fill: var(--accent); stroke: var(--ink); stroke-width: 2.5; }
+.viz--issue .issue-assignee text { font-family: var(--font-body); font-weight: 700; font-size: 15px; fill: #fff; }
+.viz--issue .issue-assignee .issue-user { font-family: var(--font-mono); font-size: 20px; font-weight: 600; fill: var(--ink); }
+.viz--issue .issue-label rect { stroke: var(--ink); stroke-width: 2; }
 .viz--issue .issue-label[data-kind="bug"] rect { fill: #f0c9c4; }
 .viz--issue .issue-label[data-kind="design"] rect { fill: #d7c9f0; }
 .viz--issue .issue-label[data-kind="good"] rect { fill: #cfe6c5; }
-.viz--issue .issue-label text {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  fill: var(--ink);
-}
-.viz--issue .issue-body line {
-  stroke: var(--ink);
-  stroke-width: 2;
-  stroke-linecap: round;
-  opacity: 0.25;
-}
-.viz--issue .issue-assignee circle {
-  fill: var(--accent);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.viz--issue .issue-assignee text {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 12px;
-  fill: #fff;
-}
+.viz--issue .issue-label text { font-size: 17px; font-weight: 600; }
+.viz--issue .issue-pr rect { fill: #fff; stroke: var(--ink); stroke-width: 2.5; }
+.viz--issue .issue-pr-icon { fill: none; stroke: var(--purple); stroke-width: 3.5; }
+.viz--issue .issue-pr-title { font-size: 20px; font-weight: 700; }
+.viz--issue .issue-pr-sub { font-size: 15px; fill: var(--muted); }
 
-/* Respect reduced motion — GSAP animations are still shown but static */
+/* Respect reduced motion — animations jump to their finished frame */
 @media (prefers-reduced-motion: reduce) {
   .hero__cursor { animation: none; }
+  .viz .viz-guide { animation: none; }
 }
